@@ -30,9 +30,9 @@ Domain-Strategie wird später entschieden.
 | Feature | KOMI (€10-14/Mo) | hoo.be | Linktree | **BioKarte** |
 |---------|-------------------|--------|----------|-------------|
 | Bio Page | Ja | Ja | Ja | Ja |
-| Templates | Nur Dark/Light/Custom | 16+ mit Pro | Limited | 10 zum Launch |
+| Templates | Nur Dark/Light/Custom | 16+ mit Pro | Limited | 3 im MVP, 10 geplant |
 | Content Blocks | 30+ Typen | 6 Kategorien | Links only | Flexibel, erweiterbar |
-| Onboarding | Wizard (3 Steps) | Wizard (6 Steps) | Minimal | Wizard (7 Steps, hoo.be Style) |
+| Onboarding | Wizard (3 Steps) | Wizard (6 Steps) | Minimal | Wizard (5 Steps MVP, 7 voll) |
 | Editor | Sidebar + Preview | Phone Preview + Panel | Simple | Phone Preview + Panel |
 | Analytics | Views, Clicks, Performance | Views, Clicks, CTR | Pro only | Views, Clicks, CTR |
 | Brand Deals | Ja (Creator Score) | Nein | Nein | Nein (später) |
@@ -86,41 +86,43 @@ Domain-Strategie wird später entschieden.
 
 Inspiriert von hoo.be — geführter Wizard, in unter 5 Minuten live.
 
-### Steps
+### MVP Steps (Phase 1)
 
 ```
 Step 1: Registrierung
-  → Email/Passwort, Google oder SoundCloud
-  → Bei SoundCloud: Auto-Import von Profilbild, Name, Bio, Tracks
+  → Email/Passwort oder Google OAuth
+  → (SoundCloud OAuth kommt in Phase 3)
 
 Step 2: Template wählen
   → Grid mit visuellen Mini-Previews (4 Spalten Desktop, 2 Mobile)
   → Free vs. Pro Badge (für spätere Monetarisierung)
   → "You can change and customize anytime"
 
-Step 3: Plattformen auswählen
-  → Icon-Grid: Instagram, SoundCloud, YouTube, TikTok, Spotify,
-    Facebook, X, Threads, Mixcloud, WhatsApp, Website, etc.
-  → Multi-Select, nur relevante Felder im nächsten Step
-
-Step 4: Links eintragen
-  → Nur die ausgewählten Plattformen erscheinen
+Step 3: Plattformen auswählen + Links eintragen
+  → Icon-Grid: Instagram, SoundCloud, YouTube, TikTok, Spotify, etc.
+  → Multi-Select → nur ausgewählte Plattformen zeigen Input-Felder
   → Live-Validierung: grünes Häkchen wenn Username gefunden
-  → @username oder URL Format
 
-Step 5: Suggested Links
+Step 4: Profil-Details
+  → Profilbild Upload
+  → Titel / Name
+  → Bio (max 150 Zeichen)
+
+Step 5: "Looking good!"
+  → Live Preview der fertigen Seite im Phone-Mockup
+  → "Continue building" → zum Editor/Dashboard
+```
+
+### Zusätzliche Steps (Phase 3+)
+
+```
+Nach Step 3: Suggested Links
   → Automatische Suche nach gleichem Username auf anderen Plattformen
   → "We found a few more links based on your account"
   → Ein Klick auf "+" zum Hinzufügen
 
-Step 6: Profil-Details
-  → Profilbild (Upload oder von SoundCloud importiert)
-  → Titel / Name
-  → Bio (max 150 Zeichen)
-
-Step 7: "Looking good!"
-  → Live Preview der fertigen Seite im Phone-Mockup
-  → "Continue building" → zum Editor/Dashboard
+Step 1 erweitert: SoundCloud OAuth
+  → Bei SoundCloud: Auto-Import von Profilbild, Name, Bio, Tracks
 ```
 
 ---
@@ -195,7 +197,7 @@ Inspiriert von hoo.be — Live Preview links, Content Panel rechts.
 | **Text** | Freitext-Block | MVP |
 | **Section Title** | Seite in Abschnitte unterteilen | MVP |
 | **Embed** | SoundCloud Player, YouTube Video, Spotify | MVP |
-| **Carousel** | Horizontale Scroll-Gruppe (Mixes, Videos, Events) | MVP |
+| **Carousel** | Horizontale Scroll-Gruppe (Links, Videos, Events) | Phase 2 |
 | **Image/Gallery** | Bilder-Upload | Phase 2 |
 | **Contact Form** | Booking-Anfragen | Phase 2 |
 | **Donation** | Spenden-Link | Phase 2 |
@@ -534,3 +536,75 @@ Alle Referenz-Materialien liegen in `~/Desktop/Biopages-Templates/`:
 - Static Generation wo möglich
 - Image Optimization via Next.js
 - Lazy Loading für Embeds (SoundCloud, YouTube)
+
+---
+
+## 18. Editor-Details (aus hoo.be Research)
+
+### Link Layout Styles
+
+Links können in verschiedenen Layouts dargestellt werden:
+- Nur Text (schlicht)
+- Thumbnail links + Text rechts
+- Thumbnail links (groß) + Text rechts
+- 2er Grid (zwei Karten nebeneinander)
+- 3er Grid (drei Karten)
+- Full-width mit großem Bild
+
+Der User wählt das Layout beim Erstellen eines Links. Kann jederzeit geändert werden.
+
+### Draft / Add Konzept
+
+Content Blocks haben zwei Zustände:
+- **Draft** — gespeichert aber nicht live sichtbar
+- **Add** — sofort live auf der Profilseite
+
+Das ermöglicht Content vorzubereiten ohne es sofort zu veröffentlichen.
+
+### Embed Picker
+
+Grid mit Plattform-Icons und Suchfeld:
+- Filter: All | Video | Audio | Social | Other
+- Plattformen: YouTube, TikTok, Spotify, X, Apple Music, Threads,
+  Twitch, Vimeo, SoundCloud, Mixcloud, etc.
+
+---
+
+## 19. Zusätzliche Template-Inspirationen
+
+Aus dem Design-Ordner (`~/Desktop/BioKarte-Templates/`):
+
+| Inspiration | Stil | Was wir übernehmen |
+|-------------|------|-------------------|
+| Yellow Zest (Linktree) | Knallig gelb, bold Branding | Zeigt: auch bunte, freche Templates funktionieren |
+| Dark Elegant (4 Varianten) | Schwarze Bögen/Kreise, Sparkle-Elemente, Script-Font | Gute Basis für ein "Elegant" Template |
+| Kio Suffocate | Bento-Grid, Glassmorphism, Stats | Zeigt: Templates können auch Grid-Layouts sein, nicht nur Listen |
+| Surf Coach | Full-bleed Hero, Booking mit Pricing, Kurs-Karten | Zeigt: Templates für Coaches/Trainer mit Buchungsfunktion |
+
+### Template-Kategorien (erweitert)
+
+Neben den 10 Templates aus Sektion 9 gibt es diese Layout-Typen:
+
+| Layout-Typ | Beschreibung | Beispiel |
+|-----------|-------------|---------|
+| **Link Stack** | Klassisch, Links untereinander | Linktree-Style, Yellow Zest |
+| **Card Grid** | Bento-Grid mit verschiedenen Karten-Größen | Kio Suffocate |
+| **Hero Focus** | Großes Hero-Bild, Content darunter | KOMI/Usher, Surf Coach |
+| **Minimal** | Sehr reduziert, viel Whitespace | Clean Professional |
+
+---
+
+## 20. Offene Punkte (aus Spec Review)
+
+Folgende Punkte müssen vor Implementierung geklärt werden:
+
+| # | Thema | Status |
+|---|-------|--------|
+| 1 | URL/Slug-Handling: Uniqueness pro Instanz, reservierte Slugs (`/admin`, `/api`, `/settings`) | Offen |
+| 2 | Content Block `data` JSON-Schemas pro Block-Typ definieren | Offen |
+| 3 | Template CSS-Architektur: CSS Custom Properties vs. Tailwind Theme | Offen |
+| 4 | SoundCloud API-Zugang prüfen (eingeschränkt seit 2017) | Offen |
+| 5 | DSGVO + Third-Party Embeds: Cookie-Consent nötig für YT/SC Embeds | Offen |
+| 6 | MVP = Single-Tenant, White-Label erst Phase 4 | Geklärt |
+| 7 | Editor Mobile-Verhalten (Editor nur Desktop oder auch Mobile?) | Offen |
+| 8 | Supabase Free Tier reicht für ca. 500 User mit je 5 MB | Geschätzt |
