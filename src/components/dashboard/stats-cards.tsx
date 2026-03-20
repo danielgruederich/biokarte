@@ -12,14 +12,14 @@ export async function StatsCards({ userId }: StatsCardsProps) {
   const { count: views } = await supabase
     .from('analytics_events')
     .select('*', { count: 'exact', head: true })
-    .eq('user_id', userId)
+    .eq('profile_id', userId)
     .eq('event_type', 'view')
 
   // Count clicks
   const { count: clicks } = await supabase
     .from('analytics_events')
     .select('*', { count: 'exact', head: true })
-    .eq('user_id', userId)
+    .eq('profile_id', userId)
     .eq('event_type', 'click')
 
   const viewCount = views ?? 0

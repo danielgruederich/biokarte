@@ -47,9 +47,10 @@ export default function RegisterPage() {
     })
 
     if (error) {
+      console.error('Registration error:', error)
       setError(error.message === 'User already registered'
         ? 'Diese E-Mail ist bereits registriert.'
-        : 'Registrierung fehlgeschlagen. Bitte versuche es erneut.')
+        : `Fehler: ${error.message}`)
       setLoading(false)
       return
     }

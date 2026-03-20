@@ -20,7 +20,7 @@ export async function TopLinks({ userId }: TopLinksProps) {
   const { data: socialLinks } = await supabase
     .from('social_links')
     .select('id, platform, username')
-    .eq('user_id', userId)
+    .eq('profile_id', userId)
 
   if (!socialLinks || socialLinks.length === 0) {
     return (
@@ -40,7 +40,7 @@ export async function TopLinks({ userId }: TopLinksProps) {
   const { data: clickEvents } = await supabase
     .from('analytics_events')
     .select('target_id')
-    .eq('user_id', userId)
+    .eq('profile_id', userId)
     .eq('event_type', 'click')
     .in('target_id', linkIds)
 
