@@ -22,8 +22,8 @@ export default function RegisterPage() {
     setError(null)
 
     // Validate username
-    if (!/^[a-z0-9_]+$/.test(username)) {
-      setError('Benutzername darf nur Kleinbuchstaben, Zahlen und _ enthalten.')
+    if (!/^[a-z0-9][a-z0-9_-]{1,28}[a-z0-9]$/.test(username)) {
+      setError('Benutzername: 3-30 Zeichen, nur Kleinbuchstaben, Zahlen, - und _')
       return
     }
 
@@ -90,7 +90,7 @@ export default function RegisterPage() {
               required
               className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
             />
-            <p className="text-xs text-zinc-500">Nur Kleinbuchstaben, Zahlen und _</p>
+            <p className="text-xs text-zinc-500">3-30 Zeichen: Kleinbuchstaben, Zahlen, - und _</p>
           </div>
 
           <div className="space-y-1">
