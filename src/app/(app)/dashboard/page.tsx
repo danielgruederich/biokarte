@@ -17,34 +17,33 @@ export default async function DashboardPage() {
   if (!user) redirect('/login')
 
   // Fetch profile
-  const { data: profileRaw } = await supabase
+  const { data: profileRaw, error: profileError } = await supabase
     .from('profiles')
     .select('*')
     .eq('id', user.id)
     .single()
 
-  if (!profileRaw) redirect('/onboarding')
+  if (profileError || !profileRaw) redirect('/onboarding')
   const profile = profileRaw as unknown as Profile
 
   // Fetch social links and content blocks for preview
-  const [{ data: socialLinksRaw }, { data: contentBlocksRaw }] = await Promise.all([
-    supabase
-      .from('social_links')
-      .select('*')
-      .eq('user_id', user.id)
-      .order('position', { ascending: true }),
-    supabase
-      .from('content_blocks')
-      .select('*')
-      .eq('user_id', user.id)
-      .order('position', { ascending: true }),
-  ])
+  const { data: socialLinksRaw } = await supabase
+    .from('social_links')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('position', { ascending: true })
+
+  const { data: contentBlocksRaw } = await supabase
+    .from('content_blocks')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('position', { ascending: true })
 
   const socialLinks = (socialLinksRaw ?? []) as unknown as SocialLink[]
   const contentBlocks = (contentBlocksRaw ?? []) as unknown as ContentBlock[]
   const template = getTemplate(profile.template_id)
 
-  const liveUrl = `biokarte.vercel.app/${profile.username}`
+  const liveUrl = `bio.colognebeats.com/${profile.username}`
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6 space-y-6">
