@@ -8,6 +8,7 @@ export interface Profile {
   avatar_url: string | null
   template_id: string
   status: 'online' | 'offline'
+  role: 'user' | 'admin'
   onboarding_complete: boolean
   created_at: string
 }

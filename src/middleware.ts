@@ -34,9 +34,10 @@ export async function middleware(request: NextRequest) {
   const isPublicPath = publicPaths.some(p => path.startsWith(p))
 
   // App paths that need auth
-  const appPaths = ['/dashboard', '/edit', '/settings', '/onboarding']
+  const appPaths = ['/dashboard', '/edit', '/settings', '/onboarding', '/admin']
   const isAppPath = appPaths.some(p => path.startsWith(p))
 
+  // Admin paths need auth + admin role (checked in admin layout)
   if (!user && isAppPath) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'

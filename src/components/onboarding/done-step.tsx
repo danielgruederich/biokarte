@@ -35,6 +35,7 @@ export function DoneStep({
     avatar_url: avatarUrl,
     template_id: templateId,
     status: 'online',
+    role: 'user',
     onboarding_complete: false,
     created_at: new Date().toISOString(),
   }
