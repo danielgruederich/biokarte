@@ -1,14 +1,96 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Link as LinkIcon, Palette, BarChart3 } from "lucide-react";
 
 const profiles = [
-  { name: "DJ Monschi", category: "DJ" },
-  { name: "DJ Nachtfalke", category: "DJ" },
-  { name: "Beats.Cologne", category: "Producer" },
-  { name: "Colognebeats", category: "Collective" },
-  { name: "DJ Vinyl Kai", category: "DJ" },
-  { name: "Kreativ Studio Ehrenfeld", category: "Collective" },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-1.jpeg",
+    template: "dark" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-2.jpeg",
+    template: "sunset" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-1.jpeg",
+    template: "minimal" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-2.jpeg",
+    template: "neon" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-1.jpeg",
+    template: "ocean" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
+  {
+    name: "Monschi",
+    subtitle: "Cologne / Fuerteventura",
+    category: "DJ",
+    image: "/images/profiles/monschi-2.jpeg",
+    template: "fire" as const,
+    links: ["SoundCloud", "Instagram"],
+  },
 ];
+
+const templateStyles = {
+  dark: {
+    card: "bg-zinc-900 border-zinc-800",
+    badge: "bg-amber-500/20 text-amber-500",
+    name: "text-white",
+    subtitle: "text-zinc-400",
+  },
+  sunset: {
+    card: "bg-gradient-to-b from-orange-950 to-rose-950 border-orange-800/50",
+    badge: "bg-orange-500/20 text-orange-400",
+    name: "text-orange-100",
+    subtitle: "text-orange-300/70",
+  },
+  minimal: {
+    card: "bg-zinc-100 border-zinc-200",
+    badge: "bg-zinc-800 text-zinc-100",
+    name: "text-zinc-900",
+    subtitle: "text-zinc-500",
+  },
+  neon: {
+    card: "bg-gradient-to-b from-violet-950 to-fuchsia-950 border-violet-500/30",
+    badge: "bg-violet-500/20 text-violet-300",
+    name: "text-violet-100",
+    subtitle: "text-violet-300/70",
+  },
+  ocean: {
+    card: "bg-gradient-to-b from-cyan-950 to-blue-950 border-cyan-500/30",
+    badge: "bg-cyan-500/20 text-cyan-300",
+    name: "text-cyan-100",
+    subtitle: "text-cyan-300/70",
+  },
+  fire: {
+    card: "bg-gradient-to-b from-red-950 to-amber-950 border-red-500/30",
+    badge: "bg-red-500/20 text-red-400",
+    name: "text-red-100",
+    subtitle: "text-red-300/70",
+  },
+};
 
 export default function LandingPage() {
   return (
@@ -73,17 +155,27 @@ export default function LandingPage() {
               <div className="absolute left-1/2 top-2 h-6 w-24 -translate-x-1/2 rounded-full bg-zinc-800" />
               {/* Screen content */}
               <div className="flex h-full flex-col items-center rounded-[32px] bg-gradient-to-b from-zinc-800 to-zinc-900 px-4 pt-12">
-                {/* Avatar placeholder */}
-                <div className="h-20 w-20 rounded-full bg-gradient-to-br from-amber-500 to-orange-600" />
+                {/* Avatar */}
+                <div className="relative h-20 w-20 overflow-hidden rounded-full">
+                  <Image
+                    src="/images/profiles/monschi-1.jpeg"
+                    alt="Monschi"
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                  />
+                </div>
                 <p
                   className="mt-3 text-lg font-black uppercase"
                   style={{
                     fontFamily: "'Big Shoulders Display', sans-serif",
                   }}
                 >
-                  DJ Monschi
+                  Monschi
                 </p>
-                <p className="text-xs text-zinc-400">Köln, Deutschland</p>
+                <p className="text-xs text-zinc-400">
+                  Cologne / Fuerteventura
+                </p>
                 {/* Link buttons */}
                 <div className="mt-6 flex w-full flex-col gap-3">
                   {["SoundCloud", "Instagram", "Booking"].map((label) => (
@@ -143,22 +235,36 @@ export default function LandingPage() {
         </h2>
         <div className="overflow-hidden">
           <div className="animate-scroll flex w-max gap-6">
-            {/* Duplicate profiles for seamless infinite scroll */}
-            {[...profiles, ...profiles].map((profile, i) => (
-              <div
-                key={`${profile.name}-${i}`}
-                className="w-[280px] shrink-0 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900"
-              >
-                {/* Placeholder image */}
-                <div className="aspect-[3/4] bg-gradient-to-br from-zinc-800 via-zinc-700 to-zinc-800" />
-                <div className="p-4">
-                  <p className="font-bold">{profile.name}</p>
-                  <span className="mt-1 inline-block rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-500">
-                    {profile.category}
-                  </span>
+            {[...profiles, ...profiles].map((profile, i) => {
+              const style = templateStyles[profile.template];
+              return (
+                <div
+                  key={`${profile.template}-${i}`}
+                  className={`w-[280px] shrink-0 overflow-hidden rounded-2xl border ${style.card}`}
+                >
+                  <div className="relative aspect-[3/4]">
+                    <Image
+                      src={profile.image}
+                      alt={profile.name}
+                      fill
+                      className="object-cover"
+                      sizes="280px"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className={`font-bold ${style.name}`}>{profile.name}</p>
+                    <p className={`text-xs ${style.subtitle}`}>
+                      {profile.subtitle}
+                    </p>
+                    <span
+                      className={`mt-2 inline-block rounded-full px-3 py-1 text-xs font-medium ${style.badge}`}
+                    >
+                      {profile.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
