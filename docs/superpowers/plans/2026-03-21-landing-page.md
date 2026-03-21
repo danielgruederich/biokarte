@@ -1,0 +1,338 @@
+# Landing Page Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Replace the default Next.js starter page with a KOMI-style landing page for BioKarte.
+
+**Architecture:** Single Server Component (`page.tsx`) with CSS-only animations (carousel, fade-in). Meta-tags and lang in `layout.tsx`. Carousel keyframes in `globals.css`.
+
+**Tech Stack:** Next.js App Router, Tailwind CSS, Lucide React, Big Shoulders Display font (already imported)
+
+**Spec:** `docs/superpowers/specs/2026-03-21-landing-page-design.md`
+
+---
+
+### Task 1: Fix layout.tsx meta-tags and lang
+
+**Files:**
+- Modify: `src/app/layout.tsx:15-18` (metadata) and `:28` (lang)
+
+- [ ] **Step 1: Update metadata and lang attribute**
+
+```tsx
+export const metadata: Metadata = {
+  title: "BioKarte — Deine Bio-Page für Köln",
+  description:
+    "Die kostenlose Bio-Page Plattform für Kölner DJs, Produzenten, Künstler und Kollektive. Alle Links an einem Ort.",
+};
+```
+
+Change `lang="en"` to `lang="de"`.
+
+- [ ] **Step 2: Add smooth scroll to html element**
+
+Add `scroll-smooth` to the html className:
+
+```tsx
+className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+```
+
+- [ ] **Step 3: Verify build**
+
+Run: `npm run build`
+Expected: Build succeeds without errors.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add src/app/layout.tsx
+git commit -m "fix: update meta-tags to BioKarte, set lang=de, add smooth scroll"
+```
+
+---
+
+### Task 2: Add carousel keyframes to globals.css
+
+**Files:**
+- Modify: `src/app/globals.css` (append after `@layer base`)
+
+- [ ] **Step 1: Add keyframes and carousel utility classes**
+
+Append to end of `globals.css`:
+
+```css
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out both;
+}
+```
+
+- [ ] **Step 2: Verify build**
+
+Run: `npm run build`
+Expected: Build succeeds.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add src/app/globals.css
+git commit -m "feat: add carousel and fade-in CSS animations"
+```
+
+---
+
+### Task 3: Build the landing page — Navigation + Hero
+
+**Files:**
+- Modify: `src/app/page.tsx` (complete rewrite)
+
+- [ ] **Step 1: Replace page.tsx with Navigation + Hero section**
+
+```tsx
+import Link from "next/link";
+import { Link as LinkIcon, Palette, BarChart3 } from "lucide-react";
+
+const profiles = [
+  { name: "DJ Monschi", category: "DJ" },
+  { name: "DJ Nachtfalke", category: "DJ" },
+  { name: "Beats.Cologne", category: "Producer" },
+  { name: "Colognebeats", category: "Collective" },
+  { name: "DJ Vinyl Kai", category: "DJ" },
+  { name: "Kreativ Studio Ehrenfeld", category: "Collective" },
+];
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[#0A0A0A] to-[#1C1108] text-white">
+      {/* Navigation */}
+      <nav aria-label="Hauptnavigation" className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-lg">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link
+            href="/"
+            className="text-xl font-bold tracking-tight text-white"
+          >
+            BioKarte
+          </Link>
+          <Link
+            href="/login"
+            className="rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            Login
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="grid items-center gap-12 md:grid-cols-2">
+          <div className="animate-fade-in-up relative">
+            {/* Gradient glow behind headline */}
+            <div className="absolute -inset-12 -z-10 rounded-full bg-amber-500/20 blur-3xl" />
+            <h1
+              className="text-5xl font-black uppercase leading-[1.1] tracking-tight md:text-7xl"
+              style={{ fontFamily: "'Big Shoulders Display', sans-serif" }}
+            >
+              Die Biokarte für Kölner DJs, Produzenten, Künstler, Kreative &
+              Kollektive
+            </h1>
+            <p className="mt-6 text-lg text-zinc-400 md:text-xl">
+              Alle deine Links. Ein Profil. Dein Style.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/register"
+                className="rounded-full bg-amber-500 px-8 py-4 font-bold text-black transition-colors hover:bg-amber-600"
+              >
+                Kostenlos Registrieren
+              </Link>
+              <a
+                href="#karussell"
+                className="rounded-full border border-white/20 px-8 py-4 font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Beispiele ansehen ↓
+              </a>
+            </div>
+          </div>
+
+          {/* Phone Mockup — hidden on mobile, shown on tablet+ */}
+          <div className="hidden md:flex md:justify-center">
+            <div className="relative h-[580px] w-[280px] rounded-[40px] border-4 border-zinc-700 bg-zinc-900 p-3 shadow-2xl">
+              {/* Notch */}
+              <div className="absolute left-1/2 top-2 h-6 w-24 -translate-x-1/2 rounded-full bg-zinc-800" />
+              {/* Screen content */}
+              <div className="flex h-full flex-col items-center rounded-[32px] bg-gradient-to-b from-zinc-800 to-zinc-900 px-4 pt-12">
+                {/* Avatar placeholder */}
+                <div className="h-20 w-20 rounded-full bg-gradient-to-br from-amber-500 to-orange-600" />
+                <p
+                  className="mt-3 text-lg font-black uppercase"
+                  style={{
+                    fontFamily: "'Big Shoulders Display', sans-serif",
+                  }}
+                >
+                  DJ Monschi
+                </p>
+                <p className="text-xs text-zinc-400">Köln, Deutschland</p>
+                {/* Link buttons */}
+                <div className="mt-6 flex w-full flex-col gap-3">
+                  {["SoundCloud", "Instagram", "Booking"].map((label) => (
+                    <div
+                      key={label}
+                      className="rounded-xl border border-zinc-700 bg-zinc-800/50 px-4 py-3 text-center text-sm font-medium"
+                    >
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: LinkIcon,
+              title: "Alle Links an einem Ort",
+              text: "Social Media, Musik, Booking — alles auf einer Seite",
+            },
+            {
+              icon: Palette,
+              title: "Eigenes Design wählen",
+              text: "Wähle aus verschiedenen Templates und mach dein Profil einzigartig",
+            },
+            {
+              icon: BarChart3,
+              title: "Statistiken & Analytics",
+              text: "Sieh wer dein Profil besucht und welche Links geklickt werden",
+            },
+          ].map(({ icon: Icon, title, text }) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8 transition-transform hover:-translate-y-1"
+            >
+              <Icon className="h-12 w-12 text-amber-500" />
+              <h3 className="mt-4 text-xl font-bold">{title}</h3>
+              <p className="mt-2 text-zinc-400">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Karussell */}
+      <section id="karussell" className="py-24 md:py-32">
+        <h2
+          className="mb-12 text-center text-3xl font-black uppercase tracking-tight md:text-5xl"
+          style={{ fontFamily: "'Big Shoulders Display', sans-serif" }}
+        >
+          Kölner Kreative auf BioKarte
+        </h2>
+        <div className="overflow-hidden">
+          <div className="animate-scroll flex w-max gap-6">
+            {/* Duplicate profiles for seamless infinite scroll */}
+            {[...profiles, ...profiles].map((profile, i) => (
+              <div
+                key={`${profile.name}-${i}`}
+                className="w-[280px] shrink-0 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900"
+              >
+                {/* Placeholder image */}
+                <div className="aspect-[3/4] bg-gradient-to-br from-zinc-800 via-zinc-700 to-zinc-800" />
+                <div className="p-4">
+                  <p className="font-bold">{profile.name}</p>
+                  <span className="mt-1 inline-block rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-500">
+                    {profile.category}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-800 bg-[#050505]">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-12 sm:flex-row sm:justify-between">
+          <p className="font-bold">BioKarte</p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-zinc-400">
+            <Link href="/login" className="hover:text-white">
+              Login
+            </Link>
+            <Link href="/register" className="hover:text-white">
+              Registrieren
+            </Link>
+            <Link href="/impressum" className="hover:text-white">
+              Impressum
+            </Link>
+            <Link href="/datenschutz" className="hover:text-white">
+              Datenschutz
+            </Link>
+          </div>
+        </div>
+        <p className="pb-8 text-center text-sm text-zinc-500">
+          Ein Projekt von Colognebeats
+        </p>
+      </footer>
+    </div>
+  );
+}
+```
+
+- [ ] **Step 2: Verify build**
+
+Run: `npm run build`
+Expected: Build succeeds without errors.
+
+- [ ] **Step 3: Start dev server and check visually**
+
+Run: `npm run dev`
+Check: `http://localhost:3000` shows the landing page with all 5 sections.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add src/app/page.tsx
+git commit -m "feat: add BioKarte landing page with hero, features, carousel, footer"
+```
+
+---
+
+### Task 4: Push to GitHub (triggers Vercel deploy)
+
+- [ ] **Step 1: Push all commits**
+
+```bash
+git push origin main
+```
+
+- [ ] **Step 2: Verify deployment**
+
+Check: https://bio.colognebeats.com shows the new landing page (Vercel auto-deploys from main).
