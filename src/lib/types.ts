@@ -1,4 +1,4 @@
-export type ContentBlockType = 'link' | 'social_link' | 'text' | 'section_title' | 'embed'
+export type ContentBlockType = 'link' | 'social_link' | 'text' | 'section_title' | 'embed' | 'carousel'
 
 export interface Profile {
   id: string
@@ -29,7 +29,7 @@ export interface ContentBlock {
   type: ContentBlockType
   position: number
   is_visible: boolean
-  data: LinkBlockData | TextBlockData | SectionTitleData | EmbedBlockData | SocialLinkBlockData
+  data: LinkBlockData | TextBlockData | SectionTitleData | EmbedBlockData | SocialLinkBlockData | CarouselBlockData
   created_at: string
 }
 
@@ -58,6 +58,17 @@ export interface EmbedBlockData {
   platform: string
   url: string
   title?: string
+}
+
+export interface CarouselItem {
+  title: string
+  url: string
+  thumbnail_url: string
+}
+
+export interface CarouselBlockData {
+  title: string
+  items: CarouselItem[]
 }
 
 export interface Template {

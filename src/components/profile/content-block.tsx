@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import type { ContentBlock, LinkBlockData, TextBlockData, SectionTitleData, EmbedBlockData, SocialLinkBlockData } from '@/lib/types'
+import type { ContentBlock, LinkBlockData, TextBlockData, SectionTitleData, EmbedBlockData, SocialLinkBlockData, CarouselBlockData } from '@/lib/types'
 import { getPlatform } from '@/lib/platforms'
 import { trackEvent } from '@/lib/analytics'
+import { CarouselBlock } from './carousel-block'
 
 interface ContentBlockProps {
   block: ContentBlock
@@ -247,6 +248,17 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
       }
 
       return null
+    }
+
+    case 'carousel': {
+      const data = block.data as CarouselBlockData
+      return (
+        <CarouselBlock
+          data={data}
+          blockId={block.id}
+          profileId={profileId}
+        />
+      )
     }
 
     default:
