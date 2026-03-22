@@ -153,70 +153,98 @@ export default function LandingPage() {
           Kölner Kreative auf BioKarte
         </h2>
         <div className="overflow-hidden">
-          <div className="animate-scroll flex w-max gap-6">
+          <div className="animate-scroll flex w-max gap-8 px-4">
             {[...carouselProfiles, ...carouselProfiles].map((profile, i) => {
               const t = profile.template;
               const isLight = t.category === 'light';
+              // Frame color: accent for dark templates, darker shade for light
+              const frameColor = isLight ? '#2a2a2a' : t.colors.accent;
               return (
-                <div
-                  key={`${t.id}-${i}`}
-                  className="w-[280px] shrink-0 overflow-hidden rounded-2xl border"
-                  style={{
-                    background: t.colors.background,
-                    borderColor: t.colors.border,
-                  }}
-                >
-                  {/* Profile image */}
-                  <div className="relative aspect-[3/4]">
-                    <Image
-                      src={profile.image}
-                      alt={profile.name}
-                      fill
-                      className="object-cover"
-                      sizes="280px"
-                    />
-                    {/* Gradient fade into card background */}
+                <div key={`${t.id}-${i}`} className="shrink-0 flex flex-col items-center gap-3">
+                  {/* iPhone frame */}
+                  <div
+                    className="relative w-[260px] rounded-[36px] p-[3px] shadow-2xl"
+                    style={{
+                      background: frameColor,
+                    }}
+                  >
+                    {/* Inner bezel */}
                     <div
-                      className="absolute inset-x-0 bottom-0 h-24"
-                      style={{
-                        background: `linear-gradient(to top, ${t.colors.background}, transparent)`,
-                      }}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p
-                      className="font-bold"
-                      style={{
-                        color: t.colors.text,
-                        fontFamily: t.fonts.display,
-                      }}
+                      className="rounded-[33px] p-2"
+                      style={{ background: '#000' }}
                     >
-                      {profile.name}
-                    </p>
-                    <p
-                      className="text-xs"
-                      style={{ color: t.colors.muted }}
-                    >
-                      {profile.subtitle}
-                    </p>
-                    <div className="mt-2 flex items-center gap-2">
-                      <span
-                        className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-                        style={{
-                          background: isLight ? t.colors.accent : `${t.colors.accent}33`,
-                          color: isLight ? t.colors.background : t.colors.accent,
-                        }}
+                      {/* Notch */}
+                      <div
+                        className="absolute left-1/2 top-[10px] z-10 h-[22px] w-[90px] -translate-x-1/2 rounded-full"
+                        style={{ background: '#000' }}
+                      />
+                      {/* Screen */}
+                      <div
+                        className="relative overflow-hidden rounded-[25px]"
+                        style={{ background: t.colors.background }}
                       >
-                        {profile.category}
-                      </span>
-                      <span
-                        className="text-xs font-medium"
-                        style={{ color: t.colors.muted }}
-                      >
-                        {t.name}
-                      </span>
+                        {/* Profile image */}
+                        <div className="relative aspect-[3/4]">
+                          <Image
+                            src={profile.image}
+                            alt={profile.name}
+                            fill
+                            className="object-cover"
+                            sizes="260px"
+                          />
+                          {/* Gradient fade into template bg */}
+                          <div
+                            className="absolute inset-x-0 bottom-0 h-28"
+                            style={{
+                              background: `linear-gradient(to top, ${t.colors.background}, transparent)`,
+                            }}
+                          />
+                        </div>
+                        {/* Profile info inside screen */}
+                        <div className="px-4 pb-5 -mt-4 relative z-10">
+                          <p
+                            className="font-bold text-lg"
+                            style={{
+                              color: t.colors.text,
+                              fontFamily: t.fonts.display,
+                            }}
+                          >
+                            {profile.name}
+                          </p>
+                          <p
+                            className="text-xs mt-0.5"
+                            style={{ color: t.colors.muted }}
+                          >
+                            {profile.subtitle}
+                          </p>
+                          {/* Fake link buttons */}
+                          <div className="mt-3 flex flex-col gap-2">
+                            {["SoundCloud", "Instagram"].map((label) => (
+                              <div
+                                key={label}
+                                className="px-3 py-2 text-center text-xs font-medium"
+                                style={{
+                                  background: t.colors.surface,
+                                  color: t.colors.text,
+                                  border: `1px solid ${t.colors.border}`,
+                                  borderRadius: t.layout.cardRadius,
+                                }}
+                              >
+                                {label}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  {/* Template name below phone */}
+                  <span
+                    className="text-sm font-semibold"
+                    style={{ color: t.colors.accent }}
+                  >
+                    {t.name}
+                  </span>
                 </div>
               );
             })}
