@@ -55,7 +55,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             alignItems: 'center',
             gap: '0.875rem',
             flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
-            padding: data.layout === 'thumbnail_large' ? 0 : '0.625rem',
+            padding: data.layout === 'thumbnail_large' ? 0 : '0.75rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: 'none',
