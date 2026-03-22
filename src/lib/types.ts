@@ -78,6 +78,16 @@ export interface Template {
   }
   grain: boolean
   category: 'dark' | 'light' | 'colorful'
+  layout: {
+    /** How the profile photo is displayed */
+    heroStyle: 'circle-avatar' | 'cover-photo'
+    /** Border-radius for link cards */
+    cardRadius: string
+    /** How social links are displayed in the hero */
+    socialStyle: 'pills' | 'icons-only'
+    /** Display name font size */
+    nameSize: 'md' | 'lg' | 'xl'
+  }
 }
 
 export interface AnalyticsEvent {

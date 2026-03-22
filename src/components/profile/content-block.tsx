@@ -56,7 +56,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             gap: data.thumbnail_url && data.layout === 'thumbnail_left' ? '0.875rem' : undefined,
             flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
             padding: '1rem',
-            borderRadius: '0.875rem',
+            borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: '1px solid var(--border)',
             color: 'var(--text)',
@@ -118,7 +118,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             alignItems: 'center',
             gap: '0.75rem',
             padding: '1rem',
-            borderRadius: '0.875rem',
+            borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: '1px solid var(--border)',
             color: 'var(--text)',
@@ -191,7 +191,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
               paddingBottom: '56.25%',
               height: 0,
               overflow: 'hidden',
-              borderRadius: '0.875rem',
+              borderRadius: 'var(--card-radius, 0.875rem)',
               marginBottom: '0.75rem',
               border: '1px solid var(--border)',
             }}
@@ -209,7 +209,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
 
       if (data.platform === 'soundcloud') {
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: '0.875rem', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden', border: '1px solid var(--border)' }}>
             <iframe
               width="100%"
               height="166"
@@ -226,7 +226,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
         const embedUrl = getSpotifyEmbedUrl(data.url)
         if (!embedUrl) return null
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: '0.875rem', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden', border: '1px solid var(--border)' }}>
             <iframe
               src={embedUrl}
               width="100%"
