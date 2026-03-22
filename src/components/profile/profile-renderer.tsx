@@ -5,6 +5,7 @@ import type { Profile, SocialLink, ContentBlock } from '@/lib/types'
 import type { Template } from '@/lib/types'
 import { getTemplateCSSVars } from '@/lib/templates'
 import { HeroSection } from './hero-section'
+import { SectionNav } from './section-nav'
 import { ContentBlockRenderer } from './content-block'
 import { trackEvent } from '@/lib/analytics'
 
@@ -41,13 +42,29 @@ export function ProfileRenderer({
     <div
       style={{
         ...(cssVars as React.CSSProperties),
-        background: 'var(--bg)',
+        background: template.backgroundCSS,
         color: 'var(--text)',
         fontFamily: 'var(--font-body)',
         minHeight: '100dvh',
         width: '100%',
+        position: 'relative',
       }}
     >
+      {/* Background overlay pattern (starfield, monogram, etc.) */}
+      {template.backgroundOverlay && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundImage: template.backgroundOverlay,
+            backgroundRepeat: 'repeat',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+      )}
+
       {/* Centered content column, max 640px */}
       <div
         style={{
@@ -55,6 +72,8 @@ export function ProfileRenderer({
           marginLeft: 'auto',
           marginRight: 'auto',
           width: '100%',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {/* Hero */}
@@ -63,6 +82,9 @@ export function ProfileRenderer({
           socialLinks={socialLinks}
           template={template}
         />
+
+        {/* KOMI-style section navigation tabs */}
+        <SectionNav contentBlocks={contentBlocks} />
 
         {/* Content blocks */}
         {visibleBlocks.length > 0 && (

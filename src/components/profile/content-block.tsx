@@ -53,9 +53,9 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: data.thumbnail_url && data.layout === 'thumbnail_left' ? '0.875rem' : undefined,
+            gap: '0.875rem',
             flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
-            padding: '1rem',
+            padding: data.layout === 'thumbnail_large' ? 0 : '0.75rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: '1px solid var(--border)',
@@ -75,30 +75,33 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
+          {/* KOMI-style: square thumbnail left, 64px */}
           {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-            <div style={{ width: '48px', height: '48px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src={data.thumbnail_url} alt="" width={48} height={48} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '64px', height: '64px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
+              <Image src={data.thumbnail_url} alt="" width={64} height={64} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
+          {/* Full-width thumbnail on top */}
           {data.thumbnail_url && data.layout === 'thumbnail_large' && (
-            <div style={{ width: '100%', height: '180px', borderRadius: '0.5rem', overflow: 'hidden' }}>
-              <Image src={data.thumbnail_url} alt="" width={600} height={180} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '100%', height: '200px', overflow: 'hidden' }}>
+              <Image src={data.thumbnail_url} alt="" width={600} height={200} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
           <span
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '0.9375rem',
-              fontWeight: 600,
+              fontSize: '0.875rem',
+              fontWeight: 500,
               color: 'var(--text)',
               flex: 1,
               textAlign: data.layout === 'thumbnail_large' ? 'center' : 'left',
+              padding: data.layout === 'thumbnail_large' ? '0.75rem' : 0,
             }}
           >
             {data.title}
           </span>
           {data.layout !== 'thumbnail_large' && (
-            <span style={{ color: 'var(--muted)', fontSize: '1rem', flexShrink: 0 }}>→</span>
+            <span style={{ color: 'var(--muted)', fontSize: '0.875rem', flexShrink: 0, paddingRight: '0.25rem' }}>›</span>
           )}
         </a>
       )
@@ -163,14 +166,18 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
       const data = block.data as SectionTitleData
       return (
         <h2
+          id={`section-${block.id}`}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.25rem',
+            fontSize: '1.125rem',
             fontWeight: 700,
             color: 'var(--text)',
-            marginTop: '1.5rem',
+            marginTop: '2rem',
             marginBottom: '0.75rem',
+            paddingTop: '1.25rem',
+            borderTop: '1px solid var(--border)',
             letterSpacing: '-0.01em',
+            scrollMarginTop: '1rem',
           }}
         >
           {data.title}

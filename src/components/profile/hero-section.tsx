@@ -55,25 +55,37 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
       >
         {/* Profile photo */}
         {heroStyle === 'cover-photo' ? (
-          // KOMI-style large cover photo
+          // KOMI-style large cover photo with bottom fade
           <div
             style={{
               width: '100%',
-              aspectRatio: '1 / 1',
-              maxHeight: '360px',
+              aspectRatio: '4 / 5',
+              maxHeight: '400px',
               overflow: 'hidden',
               position: 'relative',
-              marginBottom: '1.25rem',
+              marginBottom: '1rem',
             }}
           >
             {profile.avatar_url ? (
-              <Image
-                src={profile.avatar_url}
-                alt={profile.display_name}
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
+              <>
+                <Image
+                  src={profile.avatar_url}
+                  alt={profile.display_name}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority
+                />
+                {/* KOMI-style gradient fade at bottom */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: `linear-gradient(to top, var(--bg) 0%, transparent 40%)`,
+                    pointerEvents: 'none',
+                  }}
+                />
+              </>
             ) : (
               <div
                 style={{

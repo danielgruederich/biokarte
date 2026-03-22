@@ -65,6 +65,7 @@ export interface Template {
   name: string
   description: string
   colors: {
+    /** Solid fallback color (used for gradient endpoints, fade targets) */
     background: string
     surface: string
     text: string
@@ -72,6 +73,10 @@ export interface Template {
     accent: string
     border: string
   }
+  /** CSS background value — solid color, gradient, or multi-layer */
+  backgroundCSS: string
+  /** Optional CSS for a pattern/texture overlay (e.g. starfield, marble) */
+  backgroundOverlay?: string
   fonts: {
     display: string
     body: string

@@ -181,7 +181,7 @@ export default function LandingPage() {
                       {/* Screen */}
                       <div
                         className="relative overflow-hidden rounded-[25px]"
-                        style={{ background: t.colors.background }}
+                        style={{ background: t.backgroundCSS }}
                       >
                         {/* Profile image */}
                         <div className="relative aspect-[3/4]">
