@@ -14,7 +14,6 @@ interface ProfileRendererProps {
   socialLinks: SocialLink[]
   contentBlocks: ContentBlock[]
   template: Template
-  /** When true, disables analytics tracking (used in editor preview) */
   previewMode?: boolean
 }
 
@@ -27,7 +26,6 @@ export function ProfileRenderer({
 }: ProfileRendererProps) {
   const cssVars = getTemplateCSSVars(template)
 
-  // Track page view once on mount (skip in preview)
   useEffect(() => {
     if (!previewMode) {
       trackEvent(profile.id, 'view')
@@ -42,7 +40,10 @@ export function ProfileRenderer({
     <div
       style={{
         ...(cssVars as React.CSSProperties),
-        background: template.backgroundCSS,
+        // KOMI-style: dark outer area with colored glow
+        background: template.category === 'dark'
+          ? `radial-gradient(ellipse 600px 400px at 50% 30%, rgba(180,80,60,0.15) 0%, transparent 100%), ${template.colors.background}`
+          : template.backgroundCSS,
         color: 'var(--text)',
         fontFamily: 'var(--font-body)',
         minHeight: '100dvh',
@@ -50,7 +51,7 @@ export function ProfileRenderer({
         position: 'relative',
       }}
     >
-      {/* Background overlay pattern (starfield, monogram, etc.) */}
+      {/* Background overlay pattern */}
       {template.backgroundOverlay && (
         <div
           aria-hidden="true"
@@ -65,15 +66,18 @@ export function ProfileRenderer({
         />
       )}
 
-      {/* Centered content column, max 640px */}
+      {/* Content column */}
       <div
         style={{
-          maxWidth: '640px',
+          maxWidth: '480px',
           marginLeft: 'auto',
           marginRight: 'auto',
           width: '100%',
           position: 'relative',
           zIndex: 1,
+          // KOMI: content sits on a slightly lighter surface
+          background: template.category === 'dark' ? template.backgroundCSS : 'transparent',
+          minHeight: '100dvh',
         }}
       >
         {/* Hero */}
@@ -83,16 +87,12 @@ export function ProfileRenderer({
           template={template}
         />
 
-        {/* KOMI-style section navigation tabs */}
+        {/* Section navigation tabs */}
         <SectionNav contentBlocks={contentBlocks} />
 
         {/* Content blocks */}
         {visibleBlocks.length > 0 && (
-          <div
-            style={{
-              padding: '0 1.25rem 3rem',
-            }}
-          >
+          <div style={{ padding: '0 1.25rem 2rem' }}>
             {visibleBlocks.map(block => (
               <ContentBlockRenderer
                 key={block.id}
@@ -107,20 +107,22 @@ export function ProfileRenderer({
         <div
           style={{
             textAlign: 'center',
-            paddingBottom: '2rem',
-            color: 'var(--muted)',
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.75rem',
+            padding: '1.5rem 1.25rem 2rem',
+            borderTop: '1px solid var(--border)',
           }}
         >
-          made with{' '}
           <a
             href="https://biokarte.de"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'var(--accent)', textDecoration: 'none' }}
+            style={{
+              color: 'var(--muted)',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+            }}
           >
-            BioKarte
+            made with <span style={{ fontWeight: 700 }}>BioKarte</span>
           </a>
         </div>
       </div>

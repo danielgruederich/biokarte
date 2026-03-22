@@ -12,18 +12,19 @@ interface HeroSectionProps {
 }
 
 const nameSizeMap = {
-  md: '1.75rem',
-  lg: '2.25rem',
-  xl: '3rem',
+  md: { fontSize: '1.75rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
+  lg: { fontSize: '2.25rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
+  xl: { fontSize: '3.5rem', letterSpacing: '-0.02em', textTransform: 'uppercase' as string | undefined },
 } as const
 
 export function HeroSection({ profile, socialLinks, template }: HeroSectionProps) {
   const visibleLinks = socialLinks.filter(l => l.is_visible)
   const { heroStyle, socialStyle, nameSize } = template.layout
+  const nameStyles = nameSizeMap[nameSize]
 
   return (
-    <div className="hero-section" style={{ position: 'relative' }}>
-      {/* Grain overlay for dark templates */}
+    <div style={{ position: 'relative' }}>
+      {/* Grain overlay */}
       {template.grain && (
         <div
           aria-hidden="true"
@@ -46,68 +47,76 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
           flexDirection: 'column',
           alignItems: 'center',
           paddingTop: heroStyle === 'cover-photo' ? 0 : '2.5rem',
-          paddingBottom: '1.5rem',
-          paddingLeft: heroStyle === 'cover-photo' ? 0 : '1.25rem',
-          paddingRight: heroStyle === 'cover-photo' ? 0 : '1.25rem',
+          paddingBottom: '0.75rem',
           position: 'relative',
           zIndex: 1,
         }}
       >
-        {/* Profile photo */}
+        {/* ── COVER PHOTO (KOMI style) ── */}
         {heroStyle === 'cover-photo' ? (
-          // KOMI-style large cover photo with bottom fade
           <div
             style={{
               width: '100%',
-              aspectRatio: '4 / 5',
-              maxHeight: '400px',
-              overflow: 'hidden',
-              position: 'relative',
-              marginBottom: '1rem',
+              padding: '0 1.25rem',
+              paddingTop: '1.25rem',
             }}
           >
-            {profile.avatar_url ? (
-              <>
-                <Image
-                  src={profile.avatar_url}
-                  alt={profile.display_name}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
-                {/* KOMI-style gradient fade at bottom */}
+            <div
+              style={{
+                width: '100%',
+                aspectRatio: '3 / 4',
+                maxHeight: '380px',
+                overflow: 'hidden',
+                position: 'relative',
+                borderRadius: '1rem',
+              }}
+            >
+              {profile.avatar_url ? (
+                <>
+                  <Image
+                    src={profile.avatar_url}
+                    alt={profile.display_name}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                  />
+                  {/* Bottom fade */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '50%',
+                      background: `linear-gradient(to top, var(--bg) 0%, transparent 100%)`,
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </>
+              ) : (
                 <div
-                  aria-hidden="true"
                   style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: `linear-gradient(to top, var(--bg) 0%, transparent 40%)`,
-                    pointerEvents: 'none',
+                    width: '100%',
+                    height: '100%',
+                    background: 'var(--surface)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '5rem',
+                    color: 'var(--muted)',
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 900,
                   }}
-                />
-              </>
-            ) : (
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  background: `linear-gradient(135deg, var(--surface) 0%, var(--accent) 100%)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '5rem',
-                  color: 'var(--bg)',
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 900,
-                }}
-              >
-                {profile.display_name.charAt(0).toUpperCase()}
-              </div>
-            )}
+                >
+                  {profile.display_name.charAt(0).toUpperCase()}
+                </div>
+              )}
+            </div>
           </div>
         ) : (
-          // Classic circle avatar
-          <>
+          /* ── CIRCLE AVATAR ── */
+          <div style={{ paddingLeft: '1.25rem', paddingRight: '1.25rem' }}>
             {profile.avatar_url ? (
               <div
                 style={{
@@ -147,29 +156,29 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                 {profile.display_name.charAt(0).toUpperCase()}
               </div>
             )}
-          </>
+          </div>
         )}
 
-        {/* Display name */}
+        {/* ── NAME ── */}
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: nameSizeMap[nameSize],
+            fontSize: nameStyles.fontSize,
             fontWeight: 900,
             color: 'var(--text)',
             textAlign: 'center',
-            lineHeight: 1.1,
-            marginBottom: '0.5rem',
-            letterSpacing: nameSize === 'xl' ? '-0.02em' : '-0.01em',
-            textTransform: nameSize === 'xl' ? 'uppercase' : undefined,
-            paddingLeft: heroStyle === 'cover-photo' ? '1.25rem' : 0,
-            paddingRight: heroStyle === 'cover-photo' ? '1.25rem' : 0,
+            lineHeight: 1.05,
+            marginTop: heroStyle === 'cover-photo' ? '1rem' : 0,
+            marginBottom: '0.625rem',
+            letterSpacing: nameStyles.letterSpacing,
+            textTransform: nameStyles.textTransform as React.CSSProperties['textTransform'],
+            padding: '0 1.25rem',
           }}
         >
           {profile.display_name}
         </h1>
 
-        {/* Bio */}
+        {/* ── BIO ── */}
         {profile.bio && (
           <p
             style={{
@@ -179,33 +188,29 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
               textAlign: 'center',
               lineHeight: 1.5,
               maxWidth: '320px',
-              marginBottom: '1.25rem',
-              paddingLeft: heroStyle === 'cover-photo' ? '1.25rem' : 0,
-              paddingRight: heroStyle === 'cover-photo' ? '1.25rem' : 0,
+              marginBottom: '1rem',
+              padding: '0 1.25rem',
             }}
           >
             {profile.bio}
           </p>
         )}
 
-        {/* Social icons */}
+        {/* ── SOCIAL ICONS ── */}
         {visibleLinks.length > 0 && (
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: socialStyle === 'icons-only' ? '0.75rem' : '0.5rem',
+              gap: socialStyle === 'icons-only' ? '0.625rem' : '0.5rem',
               justifyContent: 'center',
-              marginTop: profile.bio ? 0 : '1rem',
-              paddingLeft: '1.25rem',
-              paddingRight: '1.25rem',
+              padding: '0 1.25rem',
             }}
           >
             {visibleLinks.map(link => {
               const platform = getPlatform(link.platform)
 
               if (socialStyle === 'icons-only') {
-                // KOMI-style: small icon circles
                 return (
                   <a
                     key={link.id}
@@ -217,17 +222,16 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: '2.25rem',
-                      height: '2.25rem',
+                      width: '2rem',
+                      height: '2rem',
                       borderRadius: '50%',
-                      background: 'var(--surface)',
-                      border: '1px solid var(--border)',
+                      background: 'transparent',
                       color: 'var(--text)',
                       textDecoration: 'none',
                       fontSize: '1.1rem',
                       transition: 'opacity 0.15s',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
+                    onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                     onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                   >
                     {platform?.icon ?? '🔗'}
@@ -235,7 +239,6 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                 )
               }
 
-              // Default: pills with text
               return (
                 <a
                   key={link.id}
