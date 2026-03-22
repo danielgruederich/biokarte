@@ -1,96 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Link as LinkIcon, Palette, BarChart3 } from "lucide-react";
+import { templates } from "@/lib/templates";
 
-const profiles = [
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-1.jpeg",
-    template: "dark" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-2.jpeg",
-    template: "sunset" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-1.jpeg",
-    template: "minimal" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-2.jpeg",
-    template: "neon" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-1.jpeg",
-    template: "ocean" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-  {
-    name: "Monschi",
-    subtitle: "Cologne / Fuerteventura",
-    category: "DJ",
-    image: "/images/profiles/monschi-2.jpeg",
-    template: "fire" as const,
-    links: ["SoundCloud", "Instagram"],
-  },
-];
-
-const templateStyles = {
-  dark: {
-    card: "bg-zinc-900 border-zinc-800",
-    badge: "bg-amber-500/20 text-amber-500",
-    name: "text-white",
-    subtitle: "text-zinc-400",
-  },
-  sunset: {
-    card: "bg-gradient-to-b from-orange-950 to-rose-950 border-orange-800/50",
-    badge: "bg-orange-500/20 text-orange-400",
-    name: "text-orange-100",
-    subtitle: "text-orange-300/70",
-  },
-  minimal: {
-    card: "bg-zinc-100 border-zinc-200",
-    badge: "bg-zinc-800 text-zinc-100",
-    name: "text-zinc-900",
-    subtitle: "text-zinc-500",
-  },
-  neon: {
-    card: "bg-gradient-to-b from-violet-950 to-fuchsia-950 border-violet-500/30",
-    badge: "bg-violet-500/20 text-violet-300",
-    name: "text-violet-100",
-    subtitle: "text-violet-300/70",
-  },
-  ocean: {
-    card: "bg-gradient-to-b from-cyan-950 to-blue-950 border-cyan-500/30",
-    badge: "bg-cyan-500/20 text-cyan-300",
-    name: "text-cyan-100",
-    subtitle: "text-cyan-300/70",
-  },
-  fire: {
-    card: "bg-gradient-to-b from-red-950 to-amber-950 border-red-500/30",
-    badge: "bg-red-500/20 text-red-400",
-    name: "text-red-100",
-    subtitle: "text-red-300/70",
-  },
-};
+const carouselProfiles = templates.map((t, i) => ({
+  name: "Monschi",
+  subtitle: "Cologne / Fuerteventura",
+  category: "DJ",
+  image: i % 2 === 0 ? "/images/profiles/monschi-1.jpeg" : "/images/profiles/monschi-2.jpeg",
+  template: t,
+}));
 
 export default function LandingPage() {
   return (
@@ -235,13 +154,19 @@ export default function LandingPage() {
         </h2>
         <div className="overflow-hidden">
           <div className="animate-scroll flex w-max gap-6">
-            {[...profiles, ...profiles].map((profile, i) => {
-              const style = templateStyles[profile.template];
+            {[...carouselProfiles, ...carouselProfiles].map((profile, i) => {
+              const t = profile.template;
+              const isLight = t.category === 'light';
               return (
                 <div
-                  key={`${profile.template}-${i}`}
-                  className={`w-[280px] shrink-0 overflow-hidden rounded-2xl border ${style.card}`}
+                  key={`${t.id}-${i}`}
+                  className="w-[280px] shrink-0 overflow-hidden rounded-2xl border"
+                  style={{
+                    background: t.colors.background,
+                    borderColor: t.colors.border,
+                  }}
                 >
+                  {/* Profile image */}
                   <div className="relative aspect-[3/4]">
                     <Image
                       src={profile.image}
@@ -250,17 +175,47 @@ export default function LandingPage() {
                       className="object-cover"
                       sizes="280px"
                     />
+                    {/* Gradient fade into card background */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 h-24"
+                      style={{
+                        background: `linear-gradient(to top, ${t.colors.background}, transparent)`,
+                      }}
+                    />
                   </div>
                   <div className="p-4">
-                    <p className={`font-bold ${style.name}`}>{profile.name}</p>
-                    <p className={`text-xs ${style.subtitle}`}>
+                    <p
+                      className="font-bold"
+                      style={{
+                        color: t.colors.text,
+                        fontFamily: t.fonts.display,
+                      }}
+                    >
+                      {profile.name}
+                    </p>
+                    <p
+                      className="text-xs"
+                      style={{ color: t.colors.muted }}
+                    >
                       {profile.subtitle}
                     </p>
-                    <span
-                      className={`mt-2 inline-block rounded-full px-3 py-1 text-xs font-medium ${style.badge}`}
-                    >
-                      {profile.category}
-                    </span>
+                    <div className="mt-2 flex items-center gap-2">
+                      <span
+                        className="inline-block rounded-full px-3 py-1 text-xs font-medium"
+                        style={{
+                          background: isLight ? t.colors.accent : `${t.colors.accent}33`,
+                          color: isLight ? t.colors.background : t.colors.accent,
+                        }}
+                      >
+                        {profile.category}
+                      </span>
+                      <span
+                        className="text-xs font-medium"
+                        style={{ color: t.colors.muted }}
+                      >
+                        {t.name}
+                      </span>
+                    </div>
                   </div>
                 </div>
               );
