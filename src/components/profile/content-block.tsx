@@ -215,16 +215,14 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
 
       if (data.platform === 'soundcloud') {
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
+          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden', background: '#f2f2f2' }}>
             <iframe
               width="100%"
               height="166"
-              scrolling="no"
-              frameBorder="no"
               src={getSoundCloudEmbedUrl(data.url)}
               title={data.title ?? 'SoundCloud'}
               allow="autoplay"
-              style={{ border: 0, display: 'block' }}
+              style={{ border: 'none', display: 'block', width: '100%', height: '166px' }}
             />
           </div>
         )
