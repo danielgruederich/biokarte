@@ -123,7 +123,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             padding: '1rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
-            border: '1px solid var(--border)',
+            border: 'none',
             color: 'var(--text)',
             textDecoration: 'none',
             cursor: 'pointer',
@@ -200,7 +200,6 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
               overflow: 'hidden',
               borderRadius: 'var(--card-radius, 0.875rem)',
               marginBottom: '0.75rem',
-              border: '1px solid var(--border)',
             }}
           >
             <iframe
@@ -216,10 +215,12 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
 
       if (data.platform === 'soundcloud') {
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
             <iframe
               width="100%"
               height="166"
+              scrolling="no"
+              frameBorder="no"
               src={getSoundCloudEmbedUrl(data.url)}
               title={data.title ?? 'SoundCloud'}
               allow="autoplay"
@@ -233,7 +234,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
         const embedUrl = getSpotifyEmbedUrl(data.url)
         if (!embedUrl) return null
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
             <iframe
               src={embedUrl}
               width="100%"
