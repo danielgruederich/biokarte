@@ -14,7 +14,7 @@ interface HeroSectionProps {
 const nameSizeMap = {
   md: { fontSize: '1.75rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
   lg: { fontSize: '2.25rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
-  xl: { fontSize: 'clamp(2rem, 8vw, 3.5rem)', letterSpacing: '-0.02em', textTransform: 'uppercase' as string | undefined },
+  xl: { fontSize: 'clamp(2.5rem, 12vw, 5rem)', letterSpacing: '-0.03em', textTransform: 'uppercase' as string | undefined },
 } as const
 
 export function HeroSection({ profile, socialLinks, template }: HeroSectionProps) {

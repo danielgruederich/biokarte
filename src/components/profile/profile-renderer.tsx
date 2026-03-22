@@ -42,7 +42,7 @@ export function ProfileRenderer({
         ...(cssVars as React.CSSProperties),
         // KOMI-style: dark outer area with colored glow
         background: template.category === 'dark'
-          ? `radial-gradient(ellipse 600px 400px at 50% 30%, rgba(180,80,60,0.15) 0%, transparent 100%), ${template.colors.background}`
+          ? `radial-gradient(ellipse 800px 500px at 20% 25%, rgba(200,60,40,0.25) 0%, transparent 100%), radial-gradient(ellipse 600px 400px at 85% 20%, rgba(220,100,40,0.2) 0%, transparent 100%), radial-gradient(ellipse 500px 300px at 50% 60%, rgba(180,50,80,0.12) 0%, transparent 100%), ${template.colors.background}`
           : template.backgroundCSS,
         color: 'var(--text)',
         fontFamily: 'var(--font-body)',
