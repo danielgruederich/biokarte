@@ -14,7 +14,7 @@ interface HeroSectionProps {
 const nameSizeMap = {
   md: { fontSize: '1.75rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
   lg: { fontSize: '2.25rem', letterSpacing: '-0.01em', textTransform: undefined as string | undefined },
-  xl: { fontSize: '3.5rem', letterSpacing: '-0.02em', textTransform: 'uppercase' as string | undefined },
+  xl: { fontSize: '4.5rem', letterSpacing: '-0.03em', textTransform: 'uppercase' as string | undefined },
 } as const
 
 export function HeroSection({ profile, socialLinks, template }: HeroSectionProps) {
@@ -88,7 +88,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '50%',
+                      height: '35%',
                       background: `linear-gradient(to top, var(--bg) 0%, transparent 100%)`,
                       pointerEvents: 'none',
                     }}
@@ -222,13 +222,11 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      width: '2rem',
-                      height: '2rem',
-                      borderRadius: '50%',
-                      background: 'transparent',
+                      width: '1.75rem',
+                      height: '1.75rem',
                       color: 'var(--text)',
                       textDecoration: 'none',
-                      fontSize: '1.1rem',
+                      fontSize: '1.25rem',
                       transition: 'opacity 0.15s',
                     }}
                     onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}

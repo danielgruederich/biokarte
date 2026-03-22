@@ -55,10 +55,10 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             alignItems: 'center',
             gap: '0.875rem',
             flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
-            padding: data.layout === 'thumbnail_large' ? 0 : '0.75rem',
+            padding: data.layout === 'thumbnail_large' ? 0 : '0.625rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
-            border: '1px solid var(--border)',
+            border: 'none',
             color: 'var(--text)',
             textDecoration: 'none',
             cursor: 'pointer',
@@ -75,10 +75,10 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          {/* KOMI-style: square thumbnail left, 64px */}
+          {/* KOMI-style: square thumbnail left, 72px */}
           {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-            <div style={{ width: '64px', height: '64px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src={data.thumbnail_url} alt="" width={64} height={64} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '72px', height: '72px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
+              <Image src={data.thumbnail_url} alt="" width={72} height={72} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
           {/* Full-width thumbnail on top */}
