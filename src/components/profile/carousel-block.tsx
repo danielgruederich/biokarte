@@ -44,9 +44,9 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
       >
         <h3
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1rem',
-            fontWeight: 600,
+            fontFamily: 'var(--font-body)',
+            fontSize: '1.75rem',
+            fontWeight: 700,
             color: 'var(--text)',
             margin: 0,
           }}
@@ -181,17 +181,18 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: '36px',
-                  height: '36px',
+                  width: '56px',
+                  height: '56px',
                   borderRadius: '50%',
-                  background: 'rgba(0,0,0,0.6)',
+                  background: 'rgba(0,0,0,0.3)',
+                  border: '2px solid rgba(255,255,255,0.8)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                  <polygon points="6,4 20,12 6,20" />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <polygon points="8,4 20,12 8,20" />
                 </svg>
               </div>
             </div>
