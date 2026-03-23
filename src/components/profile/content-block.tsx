@@ -167,8 +167,8 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
           >
             {/* KOMI-style: square thumbnail left, 96px */}
             {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-              <div style={{ width: '96px', height: '96px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-                <Image src={data.thumbnail_url} alt="" width={96} height={96} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+              <div style={{ width: '120px', height: '120px', borderRadius: '0.625rem', overflow: 'hidden', flexShrink: 0 }}>
+                <Image src={data.thumbnail_url} alt="" width={120} height={120} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
               </div>
             )}
             <span

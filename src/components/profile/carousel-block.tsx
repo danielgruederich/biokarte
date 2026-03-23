@@ -59,8 +59,8 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
           <button
             onClick={() => scroll('left')}
             style={{
-              width: '24px',
-              height: '24px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
               border: 'none',
               background: 'transparent',
@@ -75,13 +75,13 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            <ChevronLeftIcon size={16} />
+            <ChevronLeftIcon size={28} />
           </button>
           <button
             onClick={() => scroll('right')}
             style={{
-              width: '24px',
-              height: '24px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
               border: 'none',
               background: 'transparent',
@@ -96,7 +96,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            <ChevronRightIcon size={16} />
+            <ChevronRightIcon size={28} />
           </button>
         </div>
       </div>

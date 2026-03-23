@@ -8,11 +8,11 @@ const darkKomi: Template = {
   description: 'Dark, cinematic — KOMI Style',
   colors: {
     background: '#121212',
-    surface: '#2a2a2e',
+    surface: 'rgba(255,255,255,0.07)',
     text: '#ffffff',
     muted: 'rgba(255,255,255,0.7)',
     accent: '#c8ff00',
-    border: 'rgba(255,255,255,0.12)',
+    border: 'rgba(255,255,255,0.1)',
   },
   backgroundCSS: '#121212',
   fonts: {
