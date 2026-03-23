@@ -7,14 +7,14 @@ const darkKomi: Template = {
   name: 'Dark Komi',
   description: 'Dark, cinematic — KOMI Style',
   colors: {
-    background: '#000000',
+    background: '#121212',
     surface: '#1c1c1e',
     text: '#ffffff',
     muted: 'rgba(255,255,255,0.45)',
     accent: '#c8ff00',
     border: 'rgba(255,255,255,0.08)',
   },
-  backgroundCSS: '#000000',
+  backgroundCSS: '#121212',
   fonts: {
     display: "'Big Shoulders Display', sans-serif",
     body: "'DM Sans', sans-serif",
