@@ -105,27 +105,55 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                 </div>
               )}
 
-              {/* Name OVER the photo fade — KOMI style, slightly higher */}
-              <h1
-                style={{
-                  position: 'absolute',
-                  bottom: '0.75rem',
-                  left: '1rem',
-                  right: '1rem',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: nameStyles.fontSize,
-                  fontWeight: 900,
-                  color: 'var(--text)',
-                  textAlign: 'center',
-                  lineHeight: 1.0,
-                  letterSpacing: nameStyles.letterSpacing,
-                  textTransform: nameStyles.textTransform as React.CSSProperties['textTransform'],
-                  margin: 0,
-                  zIndex: 2,
-                }}
-              >
-                {profile.display_name}
-              </h1>
+              {/* Name or logo OVER the photo fade — KOMI style */}
+              {profile.logo_url ? (
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '0.75rem',
+                    left: '1rem',
+                    right: '1rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    zIndex: 2,
+                  }}
+                >
+                  <Image
+                    src={profile.logo_url}
+                    alt={profile.display_name}
+                    width={400}
+                    height={120}
+                    style={{
+                      maxWidth: '80%',
+                      maxHeight: '120px',
+                      width: 'auto',
+                      height: 'auto',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </div>
+              ) : (
+                <h1
+                  style={{
+                    position: 'absolute',
+                    bottom: '0.75rem',
+                    left: '1rem',
+                    right: '1rem',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: nameStyles.fontSize,
+                    fontWeight: 900,
+                    color: 'var(--text)',
+                    textAlign: 'center',
+                    lineHeight: 1.0,
+                    letterSpacing: nameStyles.letterSpacing,
+                    textTransform: nameStyles.textTransform as React.CSSProperties['textTransform'],
+                    margin: 0,
+                    zIndex: 2,
+                  }}
+                >
+                  {profile.display_name}
+                </h1>
+              )}
             </div>
           </div>
 
@@ -250,21 +278,46 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
             </div>
           )}
 
-          <h1
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: nameSizeMap[nameSize].fontSize,
-              fontWeight: 900,
-              color: 'var(--text)',
-              textAlign: 'center',
-              lineHeight: 1.1,
-              marginBottom: '0.375rem',
-              letterSpacing: nameSizeMap[nameSize].letterSpacing,
-              textTransform: nameSizeMap[nameSize].textTransform as React.CSSProperties['textTransform'],
-            }}
-          >
-            {profile.display_name}
-          </h1>
+          {/* Display name or logo wordmark */}
+          {profile.logo_url ? (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginBottom: '0.375rem',
+              }}
+            >
+              <Image
+                src={profile.logo_url}
+                alt={profile.display_name}
+                width={400}
+                height={120}
+                style={{
+                  maxWidth: '80%',
+                  maxHeight: '120px',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
+          ) : (
+            <h1
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: nameSizeMap[nameSize].fontSize,
+                fontWeight: 900,
+                color: 'var(--text)',
+                textAlign: 'center',
+                lineHeight: 1.1,
+                marginBottom: '0.375rem',
+                letterSpacing: nameSizeMap[nameSize].letterSpacing,
+                textTransform: nameSizeMap[nameSize].textTransform as React.CSSProperties['textTransform'],
+              }}
+            >
+              {profile.display_name}
+            </h1>
+          )}
 
           {profile.bio && (
             <p

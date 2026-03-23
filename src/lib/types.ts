@@ -6,6 +6,7 @@ export interface Profile {
   display_name: string
   bio: string | null
   avatar_url: string | null
+  logo_url: string | null
   template_id: string
   status: 'online' | 'offline'
   role: 'user' | 'admin'

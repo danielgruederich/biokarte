@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import type { CarouselBlockData } from '@/lib/types'
 import { trackEvent } from '@/lib/analytics'
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons/social-icons'
 
 interface CarouselBlockProps {
   data: CarouselBlockData
@@ -74,7 +75,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            ‹
+            <ChevronLeftIcon size={16} />
           </button>
           <button
             onClick={() => scroll('right')}
@@ -95,7 +96,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            ›
+            <ChevronRightIcon size={16} />
           </button>
         </div>
       </div>

@@ -33,6 +33,7 @@ export function DoneStep({
     display_name: displayName || username,
     bio: bio || null,
     avatar_url: avatarUrl,
+    logo_url: null,
     template_id: templateId,
     status: 'online',
     role: 'user',
