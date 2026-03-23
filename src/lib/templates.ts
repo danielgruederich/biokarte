@@ -10,9 +10,9 @@ const darkKomi: Template = {
     background: '#121212',
     surface: '#1c1c1e',
     text: '#ffffff',
-    muted: 'rgba(255,255,255,0.45)',
+    muted: 'rgba(255,255,255,0.7)',
     accent: '#c8ff00',
-    border: 'rgba(255,255,255,0.08)',
+    border: 'rgba(255,255,255,0.12)',
   },
   backgroundCSS: '#121212',
   fonts: {
