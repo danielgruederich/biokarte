@@ -31,7 +31,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
   if (!data.items || data.items.length === 0) return null
 
   return (
-    <div style={{ marginBottom: '0.75rem' }}>
+    <div style={{ marginBottom: '0.625rem' }}>
       {/* Header with title and arrows */}
       <div
         style={{
@@ -44,8 +44,8 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
         <h3
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.125rem',
-            fontWeight: 700,
+            fontSize: '1rem',
+            fontWeight: 600,
             color: 'var(--text)',
             margin: 0,
           }}
@@ -58,13 +58,13 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
           <button
             onClick={() => scroll('left')}
             style={{
-              width: '28px',
-              height: '28px',
+              width: '24px',
+              height: '24px',
               borderRadius: '50%',
               border: 'none',
               background: 'transparent',
               color: 'var(--text)',
-              fontSize: '1rem',
+              fontSize: '0.875rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -79,13 +79,13 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
           <button
             onClick={() => scroll('right')}
             style={{
-              width: '28px',
-              height: '28px',
+              width: '24px',
+              height: '24px',
               borderRadius: '50%',
               border: 'none',
               background: 'transparent',
               color: 'var(--text)',
-              fontSize: '1rem',
+              fontSize: '0.875rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -105,7 +105,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
         ref={scrollRef}
         style={{
           display: 'flex',
-          gap: '0.75rem',
+          gap: '0.5rem',
           overflowX: 'auto',
           scrollbarWidth: 'none',
           scrollSnapType: 'x mandatory',
@@ -120,7 +120,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             className="carousel-scroll"
             style={{
               flexShrink: 0,
-              width: 'calc(50% - 0.375rem)',
+              width: 'calc(50% - 0.25rem)',
               borderRadius: 'var(--card-radius, 0.875rem)',
               overflow: 'hidden',
               border: 'none',
@@ -147,8 +147,8 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: '40px',
-                  height: '40px',
+                  width: '36px',
+                  height: '36px',
                   borderRadius: '50%',
                   background: 'rgba(0,0,0,0.6)',
                   display: 'flex',
@@ -156,7 +156,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                   justifyContent: 'center',
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
                   <polygon points="6,4 20,12 6,20" />
                 </svg>
               </div>
@@ -168,7 +168,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                 fontSize: '0.75rem',
                 fontWeight: 500,
                 color: 'var(--text)',
-                padding: '0.5rem 0.625rem',
+                padding: '0.375rem 0.5rem',
                 margin: 0,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',

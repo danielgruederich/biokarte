@@ -40,10 +40,13 @@ export function ProfileRenderer({
     <div
       style={{
         ...(cssVars as React.CSSProperties),
-        // KOMI-style: dark outer area with colored glow
-        background: template.category === 'dark'
-          ? `radial-gradient(ellipse 800px 500px at 20% 25%, rgba(200,60,40,0.25) 0%, transparent 100%), radial-gradient(ellipse 600px 400px at 85% 20%, rgba(220,100,40,0.2) 0%, transparent 100%), radial-gradient(ellipse 500px 300px at 50% 60%, rgba(180,50,80,0.12) 0%, transparent 100%), ${template.colors.background}`
-          : template.backgroundCSS,
+        // KOMI outer: dark with subtle warm glow bleeding from edges
+        background: `
+          radial-gradient(ellipse 800px 500px at 20% 25%, rgba(200,60,40,0.2) 0%, transparent 100%),
+          radial-gradient(ellipse 600px 400px at 85% 20%, rgba(220,100,40,0.15) 0%, transparent 100%),
+          radial-gradient(ellipse 500px 300px at 50% 60%, rgba(180,50,80,0.1) 0%, transparent 100%),
+          ${template.colors.background}
+        `,
         color: 'var(--text)',
         fontFamily: 'var(--font-body)',
         minHeight: '100dvh',
@@ -51,7 +54,7 @@ export function ProfileRenderer({
         position: 'relative',
       }}
     >
-      {/* Background overlay pattern */}
+      {/* Background overlay pattern (starfield, monogram, etc.) */}
       {template.backgroundOverlay && (
         <div
           aria-hidden="true"
@@ -66,18 +69,20 @@ export function ProfileRenderer({
         />
       )}
 
-      {/* Content column */}
+      {/* KOMI: centered content column */}
       <div
         style={{
-          maxWidth: '480px',
+          maxWidth: '520px',
           marginLeft: 'auto',
           marginRight: 'auto',
           width: '100%',
           position: 'relative',
           zIndex: 1,
-          // KOMI: content sits on a slightly lighter surface
-          background: template.category === 'dark' ? template.backgroundCSS : 'transparent',
+          // Content column gets the actual template background
+          background: template.backgroundCSS,
           minHeight: '100dvh',
+          // Desktop: subtle shadow to separate from glow
+          boxShadow: '0 0 80px rgba(0,0,0,0.3)',
         }}
       >
         {/* Hero */}
@@ -92,7 +97,7 @@ export function ProfileRenderer({
 
         {/* Content blocks */}
         {visibleBlocks.length > 0 && (
-          <div style={{ padding: '0 1.25rem 2rem' }}>
+          <div style={{ padding: '0 1rem 2rem' }}>
             {visibleBlocks.map(block => (
               <ContentBlockRenderer
                 key={block.id}
@@ -103,12 +108,11 @@ export function ProfileRenderer({
           </div>
         )}
 
-        {/* Footer */}
+        {/* KOMI-style footer */}
         <div
           style={{
             textAlign: 'center',
-            padding: '1.5rem 1.25rem 2rem',
-            borderTop: '1px solid var(--border)',
+            padding: '2rem 1rem 2.5rem',
           }}
         >
           <a
@@ -120,9 +124,10 @@ export function ProfileRenderer({
               textDecoration: 'none',
               fontFamily: 'var(--font-body)',
               fontSize: '0.75rem',
+              letterSpacing: '0.02em',
             }}
           >
-            powered by <span style={{ fontWeight: 700 }}>Colognebeats</span>
+            powered by <span style={{ fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Colognebeats</span>
           </a>
         </div>
       </div>

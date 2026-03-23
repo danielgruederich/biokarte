@@ -33,11 +33,12 @@ export function SectionNav({ contentBlocks }: SectionNavProps) {
       ref={scrollRef}
       style={{
         display: 'flex',
-        gap: '0.5rem',
+        gap: '0.375rem',
         overflowX: 'auto',
-        padding: '0.75rem 1.25rem',
+        padding: '0.5rem 1rem',
         scrollbarWidth: 'none',
         WebkitOverflowScrolling: 'touch',
+        borderBottom: '1px solid var(--border)',
       }}
     >
       <style>{`
@@ -45,7 +46,7 @@ export function SectionNav({ contentBlocks }: SectionNavProps) {
       `}</style>
       <div className="section-nav" style={{
         display: 'flex',
-        gap: '0.5rem',
+        gap: '0.375rem',
         overflowX: 'auto',
         scrollbarWidth: 'none',
         width: '100%',
@@ -56,14 +57,15 @@ export function SectionNav({ contentBlocks }: SectionNavProps) {
             onClick={() => scrollToSection(section.id)}
             style={{
               whiteSpace: 'nowrap',
-              padding: '0.375rem 0.875rem',
+              padding: '0.3rem 0.75rem',
               borderRadius: '999px',
               border: '1px solid var(--border)',
               background: 'transparent',
               color: 'var(--text)',
               fontFamily: 'var(--font-body)',
-              fontSize: '0.75rem',
+              fontSize: '0.6875rem',
               fontWeight: 500,
+              letterSpacing: '0.01em',
               cursor: 'pointer',
               transition: 'background 0.15s, opacity 0.15s',
               flexShrink: 0,

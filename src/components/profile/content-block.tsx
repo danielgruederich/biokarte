@@ -56,7 +56,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             alignItems: 'center',
             gap: '0.875rem',
             flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
-            padding: data.layout === 'thumbnail_large' ? 0 : '0.75rem',
+            padding: data.layout === 'thumbnail_large' ? 0 : '0.625rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: 'none',
@@ -65,7 +65,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             cursor: 'pointer',
             transition: 'opacity 0.15s, transform 0.15s',
             overflow: 'hidden',
-            marginBottom: '0.75rem',
+            marginBottom: '0.625rem',
           }}
           onMouseEnter={e => {
             e.currentTarget.style.opacity = '0.85'
@@ -76,16 +76,16 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          {/* KOMI-style: square thumbnail left, 72px */}
+          {/* KOMI-style: square thumbnail left, 76px */}
           {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-            <div style={{ width: '72px', height: '72px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src={data.thumbnail_url} alt="" width={72} height={72} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '76px', height: '76px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
+              <Image src={data.thumbnail_url} alt="" width={76} height={76} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
           {/* Full-width thumbnail on top */}
           {data.thumbnail_url && data.layout === 'thumbnail_large' && (
-            <div style={{ width: '100%', height: '200px', overflow: 'hidden' }}>
-              <Image src={data.thumbnail_url} alt="" width={600} height={200} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '100%', height: '180px', overflow: 'hidden' }}>
+              <Image src={data.thumbnail_url} alt="" width={600} height={180} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
           <span
@@ -102,7 +102,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             {data.title}
           </span>
           {data.layout !== 'thumbnail_large' && (
-            <span style={{ color: 'var(--muted)', fontSize: '0.875rem', flexShrink: 0, paddingRight: '0.25rem' }}>›</span>
+            <span style={{ color: 'var(--muted)', fontSize: '1rem', flexShrink: 0, paddingRight: '0.25rem' }}>›</span>
           )}
         </a>
       )
@@ -121,7 +121,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             display: 'flex',
             alignItems: 'center',
             gap: '0.75rem',
-            padding: '1rem',
+            padding: '0.875rem',
             borderRadius: 'var(--card-radius, 0.875rem)',
             background: 'var(--surface)',
             border: 'none',
@@ -129,7 +129,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             textDecoration: 'none',
             cursor: 'pointer',
             transition: 'opacity 0.15s',
-            marginBottom: '0.75rem',
+            marginBottom: '0.625rem',
           }}
           onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
           onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
@@ -151,7 +151,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.9375rem',
+            fontSize: '0.875rem',
             color: 'var(--muted)',
             lineHeight: 1.65,
             marginBottom: '1rem',
@@ -170,13 +170,12 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
           id={`section-${block.id}`}
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: '1.125rem',
-            fontWeight: 700,
+            fontSize: '1rem',
+            fontWeight: 600,
             color: 'var(--text)',
-            marginTop: '2rem',
+            marginTop: '1.5rem',
             marginBottom: '0.75rem',
-            paddingTop: '1.25rem',
-            borderTop: '1px solid var(--border)',
+            paddingTop: '0.5rem',
             letterSpacing: '-0.01em',
             scrollMarginTop: '1rem',
           }}
@@ -200,7 +199,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
               height: 0,
               overflow: 'hidden',
               borderRadius: 'var(--card-radius, 0.875rem)',
-              marginBottom: '0.75rem',
+              marginBottom: '0.625rem',
             }}
           >
             <iframe
@@ -216,7 +215,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
 
       if (data.platform === 'soundcloud') {
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
+          <div style={{ marginBottom: '0.625rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
             <iframe
               width="100%"
               height="166"
@@ -233,7 +232,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
         const embedUrl = getSpotifyEmbedUrl(data.url)
         if (!embedUrl) return null
         return (
-          <div style={{ marginBottom: '0.75rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
+          <div style={{ marginBottom: '0.625rem', borderRadius: 'var(--card-radius, 0.875rem)', overflow: 'hidden' }}>
             <iframe
               src={embedUrl}
               width="100%"

@@ -45,11 +45,11 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
       {heroStyle === 'cover-photo' ? (
         /* ── KOMI-STYLE: Photo with name overlapping the fade ── */
         <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* Photo container */}
+          {/* Photo container — tighter side padding to match KOMI */}
           <div
             style={{
               width: '100%',
-              padding: '0 1.25rem',
+              padding: '0 0.75rem',
               paddingTop: '0.75rem',
             }}
           >
@@ -57,7 +57,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
               style={{
                 width: '100%',
                 aspectRatio: '4 / 5',
-                maxHeight: '480px',
+                maxHeight: '520px',
                 overflow: 'hidden',
                 position: 'relative',
                 borderRadius: '1rem',
@@ -72,7 +72,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                     style={{ objectFit: 'cover' }}
                     priority
                   />
-                  {/* Bottom fade — stronger, for name overlay */}
+                  {/* Bottom fade — stronger/taller for KOMI-style name overlay */}
                   <div
                     aria-hidden="true"
                     style={{
@@ -80,7 +80,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '55%',
+                      height: '65%',
                       background: `linear-gradient(to top, var(--bg) 5%, rgba(0,0,0,0.6) 40%, transparent 100%)`,
                       pointerEvents: 'none',
                     }}
@@ -105,11 +105,11 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                 </div>
               )}
 
-              {/* Name OVER the photo fade — KOMI style */}
+              {/* Name OVER the photo fade — KOMI style, slightly higher */}
               <h1
                 style={{
                   position: 'absolute',
-                  bottom: '0.5rem',
+                  bottom: '0.75rem',
                   left: '1rem',
                   right: '1rem',
                   fontFamily: 'var(--font-display)',
@@ -129,37 +129,37 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
             </div>
           </div>
 
-          {/* Bio, icons, below the photo */}
+          {/* Bio and icons below the photo — tighter vertical spacing */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              padding: '0.75rem 1.25rem 0.5rem',
+              padding: '0.5rem 1.25rem 0.375rem',
             }}
           >
             {profile.bio && (
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '0.8125rem',
                   color: 'var(--muted)',
                   textAlign: 'center',
                   lineHeight: 1.5,
                   maxWidth: '320px',
-                  marginBottom: '0.75rem',
+                  marginBottom: '0.625rem',
                 }}
               >
                 {profile.bio}
               </p>
             )}
 
-            {/* Social icons */}
+            {/* Social icons — wider gap for KOMI spacing */}
             {visibleLinks.length > 0 && (
               <div
                 style={{
                   display: 'flex',
-                  gap: '0.5rem',
+                  gap: '0.75rem',
                   justifyContent: 'center',
                   marginBottom: '0.25rem',
                 }}
@@ -202,8 +202,8 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            paddingTop: '2.5rem',
-            paddingBottom: '0.75rem',
+            paddingTop: '2rem',
+            paddingBottom: '0.5rem',
             paddingLeft: '1.25rem',
             paddingRight: '1.25rem',
             position: 'relative',
@@ -213,32 +213,32 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
           {profile.avatar_url ? (
             <div
               style={{
-                width: '96px',
-                height: '96px',
+                width: '104px',
+                height: '104px',
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '3px solid var(--accent)',
-                marginBottom: '1rem',
+                border: '2px solid var(--border)',
+                marginBottom: '0.75rem',
                 flexShrink: 0,
               }}
             >
               <Image
                 src={profile.avatar_url}
                 alt={profile.display_name}
-                width={96}
-                height={96}
+                width={104}
+                height={104}
                 style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
             </div>
           ) : (
             <div
               style={{
-                width: '96px',
-                height: '96px',
+                width: '104px',
+                height: '104px',
                 borderRadius: '50%',
                 background: 'var(--surface)',
-                border: '3px solid var(--accent)',
-                marginBottom: '1rem',
+                border: '2px solid var(--border)',
+                marginBottom: '0.75rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -258,7 +258,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
               color: 'var(--text)',
               textAlign: 'center',
               lineHeight: 1.1,
-              marginBottom: '0.5rem',
+              marginBottom: '0.375rem',
               letterSpacing: nameSizeMap[nameSize].letterSpacing,
               textTransform: nameSizeMap[nameSize].textTransform as React.CSSProperties['textTransform'],
             }}
@@ -270,12 +270,12 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '0.8125rem',
                 color: 'var(--muted)',
                 textAlign: 'center',
                 lineHeight: 1.5,
                 maxWidth: '320px',
-                marginBottom: '1rem',
+                marginBottom: '0.75rem',
               }}
             >
               {profile.bio}
