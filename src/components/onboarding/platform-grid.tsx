@@ -1,6 +1,7 @@
 'use client'
 
 import { platforms, type Platform } from '@/lib/platforms'
+import { socialIconMap } from '@/components/icons/social-icons'
 
 interface PlatformGridProps {
   selected: string[]
@@ -12,6 +13,7 @@ export function PlatformGrid({ selected, onToggle }: PlatformGridProps) {
     <div className="grid grid-cols-3 gap-3">
       {platforms.map((platform: Platform) => {
         const isSelected = selected.includes(platform.id)
+        const IconComponent = socialIconMap[platform.id]
         return (
           <button
             key={platform.id}
@@ -23,7 +25,7 @@ export function PlatformGrid({ selected, onToggle }: PlatformGridProps) {
                 : 'border-zinc-700 bg-zinc-800 text-zinc-300 hover:border-zinc-500'
             }`}
           >
-            <span className="text-2xl">{platform.icon}</span>
+            {IconComponent ? <IconComponent size={28} /> : <span className="text-2xl">{platform.icon}</span>}
             <span className="text-xs leading-tight text-center">{platform.name}</span>
           </button>
         )
