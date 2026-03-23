@@ -112,7 +112,7 @@ export function ProfileRenderer({
           }}
         >
           <a
-            href="https://biokarte.de"
+            href="https://colognebeats.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -122,7 +122,7 @@ export function ProfileRenderer({
               fontSize: '0.75rem',
             }}
           >
-            made with <span style={{ fontWeight: 700 }}>BioKarte</span>
+            powered by <span style={{ fontWeight: 700 }}>Colognebeats</span>
           </a>
         </div>
       </div>
