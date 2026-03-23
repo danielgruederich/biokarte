@@ -4,6 +4,7 @@ import Image from 'next/image'
 import type { Profile, SocialLink } from '@/lib/types'
 import { getPlatform } from '@/lib/platforms'
 import type { Template } from '@/lib/types'
+import { socialIconMap } from '@/components/icons/social-icons'
 
 interface HeroSectionProps {
   profile: Profile
@@ -165,6 +166,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
               >
                 {visibleLinks.map(link => {
                   const platform = getPlatform(link.platform)
+                  const IconComponent = socialIconMap[link.platform]
                   return (
                     <a
                       key={link.id}
@@ -180,13 +182,12 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         height: '1.75rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
-                        fontSize: '1.2rem',
                         transition: 'opacity 0.15s',
                       }}
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {platform?.icon ?? '🔗'}
+                      {IconComponent ? <IconComponent size={18} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 })}
@@ -292,6 +293,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
             >
               {visibleLinks.map(link => {
                 const platform = getPlatform(link.platform)
+                const IconComponent = socialIconMap[link.platform]
 
                 if (socialStyle === 'icons-only') {
                   return (
@@ -309,13 +311,12 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         height: '1.75rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
-                        fontSize: '1.25rem',
                         transition: 'opacity 0.15s',
                       }}
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {platform?.icon ?? '🔗'}
+                      {IconComponent ? <IconComponent size={18} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 }
@@ -345,7 +346,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                     onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
                     onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                   >
-                    <span style={{ fontSize: '1rem' }}>{platform?.icon ?? '🔗'}</span>
+                    {IconComponent ? <IconComponent size={16} /> : <span style={{ fontSize: '1rem' }}>{platform?.icon ?? '🔗'}</span>}
                     <span>{platform?.name ?? link.platform}</span>
                   </a>
                 )
