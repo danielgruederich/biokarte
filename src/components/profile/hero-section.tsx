@@ -19,7 +19,7 @@ const nameSizeMap = {
 } as const
 
 export function HeroSection({ profile, socialLinks, template }: HeroSectionProps) {
-  const visibleLinks = socialLinks.filter(l => l.is_visible)
+  const visibleLinks = socialLinks.filter(l => l.is_visible).slice(0, 7)
   const { heroStyle, socialStyle, nameSize } = template.layout
   const nameStyles = nameSizeMap[nameSize]
 
