@@ -111,7 +111,7 @@ export function SectionNav({ contentBlocks }: SectionNavProps) {
                 whiteSpace: 'nowrap',
                 padding: '0.3rem 0.75rem',
                 borderRadius: '999px',
-                border: isActive ? '1px solid transparent' : '1px solid var(--border)',
+                border: '1px solid transparent',
                 background: isActive ? 'var(--surface)' : 'transparent',
                 color: 'var(--text)',
                 fontFamily: 'var(--font-body)',

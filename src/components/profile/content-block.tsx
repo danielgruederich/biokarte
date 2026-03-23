@@ -145,7 +145,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
               display: 'flex',
               alignItems: 'center',
               gap: '0.875rem',
-              padding: '0.625rem',
+              padding: '0.75rem',
               borderRadius: 'var(--card-radius, 0.875rem)',
               background: 'var(--surface)',
               border: 'none',
@@ -252,11 +252,12 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '1.125rem',
-            fontWeight: 600,
+            fontWeight: 700,
             color: 'var(--text)',
+            borderTop: '1px solid var(--border)',
             marginTop: '1.5rem',
             marginBottom: '0.75rem',
-            paddingTop: '0.5rem',
+            paddingTop: '1.25rem',
             letterSpacing: '-0.01em',
             scrollMarginTop: '1rem',
           }}

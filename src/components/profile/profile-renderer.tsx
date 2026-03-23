@@ -72,7 +72,7 @@ export function ProfileRenderer({
       {/* KOMI: centered content column */}
       <div
         style={{
-          maxWidth: '520px',
+          maxWidth: '560px',
           marginLeft: 'auto',
           marginRight: 'auto',
           width: '100%',

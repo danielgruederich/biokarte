@@ -121,7 +121,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             className="carousel-scroll"
             style={{
               flexShrink: 0,
-              width: 'calc(50% - 0.25rem)',
+              width: 'calc(65% - 0.25rem)',
               borderRadius: 'var(--card-radius, 0.875rem)',
               overflow: 'hidden',
               border: 'none',
@@ -133,7 +133,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
             }}
           >
             {/* Thumbnail with overlaid title and play button */}
-            <div style={{ position: 'relative', aspectRatio: '16 / 9', width: '100%' }}>
+            <div style={{ position: 'relative', aspectRatio: '4 / 3', width: '100%' }}>
               <Image
                 src={item.thumbnail_url}
                 alt={item.title}
