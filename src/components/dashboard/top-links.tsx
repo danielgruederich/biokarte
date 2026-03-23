@@ -20,7 +20,7 @@ export async function TopLinks({ userId }: TopLinksProps) {
   const { data: socialLinks } = await supabase
     .from('social_links')
     .select('id, platform, username')
-    .eq('profile_id', userId)
+    .eq('user_id', userId)
 
   if (!socialLinks || socialLinks.length === 0) {
     return (
