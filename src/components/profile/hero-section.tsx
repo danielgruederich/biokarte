@@ -178,8 +178,8 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '2rem',
-                        height: '2rem',
+                        width: '2.4rem',
+                        height: '2.4rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
                         transition: 'opacity 0.15s',
@@ -187,7 +187,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {IconComponent ? <IconComponent size={24} /> : (platform?.icon ?? '🔗')}
+                      {IconComponent ? <IconComponent size={29} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 })}
@@ -307,8 +307,8 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '2rem',
-                        height: '2rem',
+                        width: '2.4rem',
+                        height: '2.4rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
                         transition: 'opacity 0.15s',
@@ -316,7 +316,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {IconComponent ? <IconComponent size={24} /> : (platform?.icon ?? '🔗')}
+                      {IconComponent ? <IconComponent size={29} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 }
