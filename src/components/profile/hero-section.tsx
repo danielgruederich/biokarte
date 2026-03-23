@@ -159,7 +159,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
               <div
                 style={{
                   display: 'flex',
-                  gap: '0.75rem',
+                  gap: '1rem',
                   justifyContent: 'center',
                   marginBottom: '0.25rem',
                 }}
@@ -178,8 +178,8 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '1.75rem',
-                        height: '1.75rem',
+                        width: '2rem',
+                        height: '2rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
                         transition: 'opacity 0.15s',
@@ -187,7 +187,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {IconComponent ? <IconComponent size={18} /> : (platform?.icon ?? '🔗')}
+                      {IconComponent ? <IconComponent size={24} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 })}
@@ -307,8 +307,8 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        width: '1.75rem',
-                        height: '1.75rem',
+                        width: '2rem',
+                        height: '2rem',
                         color: 'var(--text)',
                         textDecoration: 'none',
                         transition: 'opacity 0.15s',
@@ -316,7 +316,7 @@ export function HeroSection({ profile, socialLinks, template }: HeroSectionProps
                       onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
                       onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                     >
-                      {IconComponent ? <IconComponent size={18} /> : (platform?.icon ?? '🔗')}
+                      {IconComponent ? <IconComponent size={24} /> : (platform?.icon ?? '🔗')}
                     </a>
                   )
                 }
