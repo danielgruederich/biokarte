@@ -247,23 +247,31 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
     case 'section_title': {
       const data = block.data as SectionTitleData
       return (
-        <h2
-          id={`section-${block.id}`}
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '1.125rem',
-            fontWeight: 700,
-            color: 'var(--text)',
-            borderTop: '1px solid var(--border)',
-            marginTop: '1.5rem',
-            marginBottom: '0.75rem',
-            paddingTop: '1.25rem',
-            letterSpacing: '-0.01em',
-            scrollMarginTop: '1rem',
-          }}
-        >
-          {data.title}
-        </h2>
+        <div>
+          {/* KOMI-style thin divider line */}
+          <hr
+            style={{
+              border: 'none',
+              borderTop: '1px solid var(--border)',
+              margin: '1.5rem 0 0',
+            }}
+          />
+          <h2
+            id={`section-${block.id}`}
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '1.125rem',
+              fontWeight: 700,
+              color: 'var(--text)',
+              marginTop: '1.25rem',
+              marginBottom: '0.75rem',
+              letterSpacing: '-0.01em',
+              scrollMarginTop: '1rem',
+            }}
+          >
+            {data.title}
+          </h2>
+        </div>
       )
     }
 
