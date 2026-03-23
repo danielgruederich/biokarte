@@ -76,10 +76,10 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             e.currentTarget.style.transform = 'translateY(0)'
           }}
         >
-          {/* KOMI-style: square thumbnail left, 76px */}
+          {/* KOMI-style: square thumbnail left, 96px */}
           {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-            <div style={{ width: '76px', height: '76px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src={data.thumbnail_url} alt="" width={76} height={76} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+            <div style={{ width: '96px', height: '96px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
+              <Image src={data.thumbnail_url} alt="" width={96} height={96} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             </div>
           )}
           {/* Full-width thumbnail on top */}
@@ -169,8 +169,8 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
         <h2
           id={`section-${block.id}`}
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '1.125rem',
             fontWeight: 600,
             color: 'var(--text)',
             marginTop: '1.5rem',
