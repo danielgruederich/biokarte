@@ -46,65 +46,146 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
     case 'link': {
       const data = block.data as LinkBlockData
       return (
-        <a
-          href={data.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => handleClick(block.id, 'link')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.875rem',
-            flexDirection: data.layout === 'thumbnail_large' ? 'column' : 'row',
-            padding: data.layout === 'thumbnail_large' ? 0 : '0.625rem',
-            borderRadius: 'var(--card-radius, 0.875rem)',
-            background: 'var(--surface)',
-            border: 'none',
-            color: 'var(--text)',
-            textDecoration: 'none',
-            cursor: 'pointer',
-            transition: 'opacity 0.15s, transform 0.15s',
-            overflow: 'hidden',
-            marginBottom: '0.625rem',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.opacity = '0.85'
-            e.currentTarget.style.transform = 'translateY(-1px)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.opacity = '1'
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          {/* KOMI-style: square thumbnail left, 96px */}
-          {data.thumbnail_url && data.layout === 'thumbnail_left' && (
-            <div style={{ width: '96px', height: '96px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src={data.thumbnail_url} alt="" width={96} height={96} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-            </div>
-          )}
-          {/* Full-width thumbnail on top */}
-          {data.thumbnail_url && data.layout === 'thumbnail_large' && (
-            <div style={{ width: '100%', height: '180px', overflow: 'hidden' }}>
-              <Image src={data.thumbnail_url} alt="" width={600} height={180} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-            </div>
-          )}
-          <span
+        {/* KOMI-style full-width video card for thumbnail_large */}
+        {data.layout === 'thumbnail_large' ? (
+          <a
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleClick(block.id, 'link')}
             style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              color: 'var(--text)',
-              flex: 1,
-              textAlign: data.layout === 'thumbnail_large' ? 'center' : 'left',
-              padding: data.layout === 'thumbnail_large' ? '0.75rem' : 0,
+              display: 'block',
+              position: 'relative',
+              aspectRatio: '16/9',
+              overflow: 'hidden',
+              borderRadius: 'var(--card-radius, 0.875rem)',
+              background: 'var(--surface)',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'opacity 0.15s, transform 0.15s',
+              marginBottom: '0.625rem',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.opacity = '0.85'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.opacity = '1'
+              e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
-            {data.title}
-          </span>
-          {data.layout !== 'thumbnail_large' && (
+            {/* Background image fills entire card */}
+            {data.thumbnail_url && (
+              <Image
+                src={data.thumbnail_url}
+                alt=""
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            )}
+            {/* Top gradient overlay for title readability */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '40%',
+                background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)',
+                zIndex: 1,
+              }}
+            />
+            {/* Title overlaid at top */}
+            <span
+              style={{
+                position: 'absolute',
+                top: '0.75rem',
+                left: '0.75rem',
+                right: '0.75rem',
+                color: '#fff',
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                zIndex: 2,
+              }}
+            >
+              {data.title}
+            </span>
+            {/* Centered play button */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.2)',
+                border: '2px solid rgba(255,255,255,0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 2,
+              }}
+            >
+              {/* Play triangle SVG */}
+              <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+                <path d="M2 1.5L16 10L2 18.5V1.5Z" fill="rgba(255,255,255,0.9)" />
+              </svg>
+            </div>
+          </a>
+        ) : (
+          <a
+            href={data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleClick(block.id, 'link')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.875rem',
+              padding: '0.625rem',
+              borderRadius: 'var(--card-radius, 0.875rem)',
+              background: 'var(--surface)',
+              border: 'none',
+              color: 'var(--text)',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'opacity 0.15s, transform 0.15s',
+              overflow: 'hidden',
+              marginBottom: '0.625rem',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.opacity = '0.85'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.opacity = '1'
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
+          >
+            {/* KOMI-style: square thumbnail left, 96px */}
+            {data.thumbnail_url && data.layout === 'thumbnail_left' && (
+              <div style={{ width: '96px', height: '96px', borderRadius: '0.5rem', overflow: 'hidden', flexShrink: 0 }}>
+                <Image src={data.thumbnail_url} alt="" width={96} height={96} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+              </div>
+            )}
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                color: 'var(--text)',
+                flex: 1,
+                textAlign: 'left',
+              }}
+            >
+              {data.title}
+            </span>
             <span style={{ color: 'var(--muted)', fontSize: '1rem', flexShrink: 0, paddingRight: '0.25rem' }}>›</span>
-          )}
-        </a>
+          </a>
+        )}
       )
     }
 

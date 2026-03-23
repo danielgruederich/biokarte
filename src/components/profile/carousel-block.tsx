@@ -132,7 +132,7 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
               textAlign: 'left',
             }}
           >
-            {/* Thumbnail with play button overlay */}
+            {/* Thumbnail with overlaid title and play button */}
             <div style={{ position: 'relative', aspectRatio: '16 / 9', width: '100%' }}>
               <Image
                 src={item.thumbnail_url}
@@ -141,6 +141,39 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                 style={{ objectFit: 'cover' }}
                 sizes="240px"
               />
+              {/* Dark gradient overlay for title readability */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '50%',
+                  background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)',
+                  pointerEvents: 'none',
+                  zIndex: 1,
+                }}
+              />
+              {/* Title overlaid on thumbnail */}
+              <p
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '0.5rem 0.625rem',
+                  margin: 0,
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  color: 'white',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  zIndex: 2,
+                }}
+              >
+                {item.title}
+              </p>
               {/* Play button circle */}
               <div
                 style={{
@@ -162,22 +195,6 @@ export function CarouselBlock({ data, blockId, profileId }: CarouselBlockProps) 
                 </svg>
               </div>
             </div>
-            {/* Title */}
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.75rem',
-                fontWeight: 500,
-                color: 'var(--text)',
-                padding: '0.375rem 0.5rem',
-                margin: 0,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {item.title}
-            </p>
           </button>
         ))}
       </div>
