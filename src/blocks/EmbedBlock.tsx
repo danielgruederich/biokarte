@@ -24,7 +24,7 @@ function getYouTubeEmbedUrl(url: string): string | null {
 }
 
 function getSoundCloudEmbedUrl(url: string): string {
-  return `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23c8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true`
+  return `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23c8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`
 }
 
 function getSpotifyEmbedUrl(url: string): string | null {
@@ -63,11 +63,11 @@ export function EmbedBlock({ data }: Props) {
       <div className={styles.embedSoundcloud}>
         <iframe
           width="100%"
-          height="180"
+          height="166"
           src={getSoundCloudEmbedUrl(activeUrl)}
           title={data.title ?? 'SoundCloud'}
           allow="autoplay"
-          style={{ border: 'none', display: 'block', width: '100%', height: '180px' }}
+          style={{ border: 'none', display: 'block', width: '100%', height: '166px' }}
         />
       </div>
     )
