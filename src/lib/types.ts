@@ -95,6 +95,7 @@ export interface SectionTitleData {
 export interface EmbedBlockData {
   platform: string
   url: string
+  urls?: string[]  // Multiple URLs for rotation (random on each load)
   title?: string
 }
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import type { EmbedBlockData } from '@/lib/types'
 import styles from '@/layouts/komi/komi.module.css'
 
@@ -33,8 +34,16 @@ function getSpotifyEmbedUrl(url: string): string | null {
 }
 
 export function EmbedBlock({ data }: Props) {
+  // Pick a random URL from urls array, or fall back to single url
+  const activeUrl = useMemo(() => {
+    if (data.urls && data.urls.length > 0) {
+      return data.urls[Math.floor(Math.random() * data.urls.length)]
+    }
+    return data.url
+  }, [data.urls, data.url])
+
   if (data.platform === 'youtube') {
-    const embedUrl = getYouTubeEmbedUrl(data.url)
+    const embedUrl = getYouTubeEmbedUrl(activeUrl)
     if (!embedUrl) return null
     return (
       <div className={styles.embedYoutube}>
@@ -55,7 +64,7 @@ export function EmbedBlock({ data }: Props) {
         <iframe
           width="100%"
           height="300"
-          src={getSoundCloudEmbedUrl(data.url)}
+          src={getSoundCloudEmbedUrl(activeUrl)}
           title={data.title ?? 'SoundCloud'}
           allow="autoplay"
           style={{ border: 'none', display: 'block', width: '100%', height: '300px' }}
@@ -65,7 +74,7 @@ export function EmbedBlock({ data }: Props) {
   }
 
   if (data.platform === 'spotify') {
-    const embedUrl = getSpotifyEmbedUrl(data.url)
+    const embedUrl = getSpotifyEmbedUrl(activeUrl)
     if (!embedUrl) return null
     return (
       <div className={styles.embedSpotify}>
