@@ -46,8 +46,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
     case 'link': {
       const data = block.data as LinkBlockData
       return (
-        {/* KOMI-style full-width video card for thumbnail_large */}
-        {data.layout === 'thumbnail_large' ? (
+        data.layout === 'thumbnail_large' ? (
           <a
             href={data.url}
             target="_blank"
@@ -185,7 +184,7 @@ export function ContentBlockRenderer({ block, profileId }: ContentBlockProps) {
             </span>
             <span style={{ color: 'var(--muted)', fontSize: '1rem', flexShrink: 0, paddingRight: '0.25rem' }}>›</span>
           </a>
-        )}
+        )
       )
     }
 

@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
-import { getTemplate, getTemplateCSSVars } from '@/lib/templates'
-import { ProfileRenderer } from '@/components/profile/profile-renderer'
+import { getTemplate } from '@/lib/templates'
+import { KomiProfile } from '@/layouts/komi/KomiProfile'
 import type { Profile, SocialLink, ContentBlock } from '@/lib/types'
 
 interface PageProps {
@@ -78,25 +78,53 @@ export default async function PublicProfilePage({ params }: PageProps) {
   const contentBlocks = (contentBlocksRaw ?? []) as unknown as ContentBlock[]
 
   const template = getTemplate(typedProfile.template_id)
-  const cssVars = getTemplateCSSVars(template)
 
-  return (
-    <>
-      {/* Apply template background color to the html/body via a global style tag */}
-      <style>{`
-        html, body {
-          background-color: ${template.colors.background} !important;
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
+  // Layout router — render based on template's layoutCategory
+  switch (template.layoutCategory) {
+    case 'komi':
+      return (
+        <>
+          <style>{`
+            html, body {
+              background-color: ${template.colors.background} !important;
+              margin: 0;
+              padding: 0;
+            }
+          `}</style>
+          <KomiProfile
+            profile={typedProfile}
+            socialLinks={socialLinks}
+            contentBlocks={contentBlocks}
+            template={template}
+          />
+        </>
+      )
 
-      <ProfileRenderer
-        profile={typedProfile}
-        socialLinks={socialLinks}
-        contentBlocks={contentBlocks}
-        template={template}
-      />
-    </>
-  )
+    case 'hoobe':
+      // Phase 2: HoobeProfile
+      return <div>hoo.be Layout — coming soon</div>
+
+    case 'linktree':
+      // Phase 3: LinktreeProfile — for now fallback to KOMI
+      return (
+        <>
+          <style>{`
+            html, body {
+              background-color: ${template.colors.background} !important;
+              margin: 0;
+              padding: 0;
+            }
+          `}</style>
+          <KomiProfile
+            profile={typedProfile}
+            socialLinks={socialLinks}
+            contentBlocks={contentBlocks}
+            template={template}
+          />
+        </>
+      )
+
+    default:
+      return notFound()
+  }
 }

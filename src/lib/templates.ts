@@ -6,6 +6,7 @@ const darkKomi: Template = {
   id: 'dark-komi',
   name: 'Dark Komi',
   description: 'Dark, cinematic — KOMI Style',
+  layoutCategory: 'komi',
   colors: {
     background: '#121212',
     surface: 'rgba(255,255,255,0.07)',
@@ -17,9 +18,9 @@ const darkKomi: Template = {
   backgroundCSS: '#121212',
   fonts: {
     display: "'Big Shoulders Display', sans-serif",
-    body: "'DM Sans', sans-serif",
+    body: "'Inter', sans-serif",
   },
-  grain: false,
+  grain: true,
   category: 'dark',
   layout: {
     heroStyle: 'cover-photo',
@@ -33,6 +34,7 @@ const starfield: Template = {
   id: 'starfield',
   name: 'Starfield',
   description: 'Nachthimmel mit Sternen',
+  layoutCategory: 'linktree',
   colors: {
     background: '#060d20',
     surface: '#0e1a3a',
@@ -84,6 +86,7 @@ const nebula: Template = {
   id: 'nebula',
   name: 'Nebula',
   description: 'Dunkles Blau mit Wolken',
+  layoutCategory: 'linktree',
   colors: {
     background: '#080e1e',
     surface: '#12203a',
@@ -117,6 +120,7 @@ const slate: Template = {
   id: 'slate',
   name: 'Slate',
   description: 'Dunkelgrau, helle Buttons',
+  layoutCategory: 'linktree',
   colors: {
     background: '#1a1a1c',
     surface: '#3a3a3e',
@@ -146,6 +150,7 @@ const marble: Template = {
   id: 'marble',
   name: 'Marble',
   description: 'Bunter Marmor',
+  layoutCategory: 'linktree',
   colors: {
     background: '#f5f0ec',
     surface: 'rgba(255,255,255,0.8)',
@@ -180,6 +185,7 @@ const watercolor: Template = {
   id: 'watercolor',
   name: 'Watercolor',
   description: 'Aquarell-Himmel',
+  layoutCategory: 'linktree',
   colors: {
     background: '#eef2f8',
     surface: 'rgba(255,255,255,0.75)',
@@ -213,6 +219,7 @@ const monogram: Template = {
   id: 'monogram',
   name: 'Monogram',
   description: 'Navy mit Muster',
+  layoutCategory: 'linktree',
   colors: {
     background: '#0c1428',
     surface: '#ffffff',
@@ -241,6 +248,7 @@ const contrast: Template = {
   id: 'contrast',
   name: 'Contrast',
   description: 'Schwarz + Weiß',
+  layoutCategory: 'linktree',
   colors: {
     background: '#000000',
     surface: '#ffffff',
@@ -270,6 +278,7 @@ const cream: Template = {
   id: 'cream',
   name: 'Cream',
   description: 'Warmes Beige',
+  layoutCategory: 'linktree',
   colors: {
     background: '#f0e8dd',
     surface: '#ddd3c5',
@@ -297,6 +306,7 @@ const blush: Template = {
   id: 'blush',
   name: 'Blush',
   description: 'Sanftes Peach',
+  layoutCategory: 'linktree',
   colors: {
     background: '#f5e8e4',
     surface: '#c8b0cc',
@@ -324,6 +334,7 @@ const ivory: Template = {
   id: 'ivory',
   name: 'Ivory',
   description: 'Elfenbein mit Punkten',
+  layoutCategory: 'linktree',
   colors: {
     background: '#f8f5f0',
     surface: '#ebe6de',
@@ -355,6 +366,7 @@ const silver: Template = {
   id: 'silver',
   name: 'Silver',
   description: 'Kühles Grau',
+  layoutCategory: 'linktree',
   colors: {
     background: '#e4e6ea',
     surface: '#f5f6f8',
@@ -384,6 +396,7 @@ const rainbow: Template = {
   id: 'rainbow',
   name: 'Rainbow',
   description: 'Regenbogen-Gradient',
+  layoutCategory: 'linktree',
   colors: {
     background: '#6b44c0',
     surface: 'rgba(50,25,90,0.6)',
@@ -411,6 +424,7 @@ const magenta: Template = {
   id: 'magenta',
   name: 'Magenta',
   description: 'Hot Pink Gradient',
+  layoutCategory: 'linktree',
   colors: {
     background: '#a01060',
     surface: 'rgba(70,15,70,0.55)',
@@ -438,6 +452,7 @@ const sunset: Template = {
   id: 'sunset',
   name: 'Sunset',
   description: 'Warmer Sonnenuntergang',
+  layoutCategory: 'linktree',
   colors: {
     background: '#d08040',
     surface: 'rgba(255,255,255,0.22)',
@@ -465,6 +480,7 @@ const aurora: Template = {
   id: 'aurora',
   name: 'Aurora',
   description: 'Pink zu Cyan',
+  layoutCategory: 'linktree',
   colors: {
     background: '#a060b0',
     surface: 'rgba(255,255,255,0.22)',

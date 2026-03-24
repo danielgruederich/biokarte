@@ -1,0 +1,561 @@
+/* KOMI Layout — CSS Modules */
+/* Design rules: Inter body, Big Shoulders Display, min 16px body, 32px icons */
+
+/* === Page === */
+
+.page {
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+}
+
+.column {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  background: var(--bg-css);
+  min-height: 100dvh;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+}
+
+/* === Grain Overlay === */
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* === Hero === */
+
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.heroPhotoWrap {
+  width: 100%;
+  padding: 0 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.heroPhotoInner {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 520px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  background: linear-gradient(to top, var(--bg) 5%, rgba(0, 0, 0, 0.6) 40%, transparent 100%);
+  pointer-events: none;
+}
+
+.heroPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+/* Name: links-ausgerichtet (nicht zentriert!) */
+.heroName {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 1rem;
+  right: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 12vw, 5rem);
+  font-weight: 900;
+  color: var(--text);
+  text-align: left;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  z-index: 2;
+}
+
+.heroLogo {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 2;
+}
+
+.heroLogoImg {
+  max-width: 80%;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* === Bio + Social Icons === */
+
+.heroBio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1.25rem 0.375rem;
+}
+
+.bioText {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+  max-width: 320px;
+  margin-bottom: 0.625rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.socialIcon:hover {
+  opacity: 0.6;
+}
+
+/* === Section Nav === */
+
+.nav {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 1rem;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-css);
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navButton {
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+.navButton:hover {
+  color: var(--text);
+}
+
+.navButtonActive {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* === Blocks Container === */
+
+.blocks {
+  padding: 0 1rem 2rem;
+}
+
+/* === Section Title Block === */
+
+.sectionDivider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 3.5rem;
+}
+
+/* === Text Block === */
+
+.textBlock {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+/* === Link Block === */
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: var(--card-radius, 0.875rem);
+  background: var(--surface);
+  border: none;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  overflow: hidden;
+  margin-bottom: 0.625rem;
+}
+
+.linkCard:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.linkThumb {
+  width: 120px;
+  height: 120px;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.linkThumbImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.linkTitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+  text-align: left;
+}
+
+.linkChevron {
+  color: var(--muted);
+  font-size: 1rem;
+  flex-shrink: 0;
+  padding-right: 0.25rem;
+}
+
+/* === Link Large (thumbnail_large) === */
+
+.linkLarge {
+  display: block;
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--card-radius, 0.875rem);
+  background: var(--surface);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  margin-bottom: 0.625rem;
+}
+
+.linkLarge:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.linkLargeGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.linkLargeTitle {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 2;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* === Embed Block === */
+
+.embedYoutube {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--card-radius, 0.875rem);
+  margin-bottom: 0.625rem;
+}
+
+.embedYoutubeIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embedSoundcloud {
+  margin-bottom: 0.625rem;
+  border-radius: var(--card-radius, 0.875rem);
+  overflow: hidden;
+}
+
+.embedSpotify {
+  margin-bottom: 0.625rem;
+  border-radius: var(--card-radius, 0.875rem);
+  overflow: hidden;
+}
+
+/* === Carousel === */
+
+.carouselHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.carouselTitle {
+  font-family: var(--font-body);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.carouselArrows {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.carouselArrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+}
+
+.carouselArrow:hover {
+  opacity: 0.6;
+}
+
+.carouselScroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 0.625rem;
+}
+
+.carouselScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselVideoItem {
+  flex-shrink: 0;
+  width: calc(65% - 0.25rem);
+  border-radius: var(--card-radius, 0.875rem);
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--surface);
+  scroll-snap-align: start;
+  text-align: left;
+}
+
+.carouselVideoThumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+.carouselVideoGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carouselVideoTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.625rem;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Music carousel variant */
+.carouselMusicItem {
+  flex-shrink: 0;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: var(--card-radius, 0.875rem);
+  border: none;
+  cursor: pointer;
+  background: var(--surface);
+  scroll-snap-align: start;
+  text-align: left;
+}
+
+.carouselMusicCover {
+  width: 80px;
+  height: 80px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.carouselMusicInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.carouselMusicTitle {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carouselMusicSubtitle {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* === Footer === */
+
+.footer {
+  text-align: center;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.footerLink {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.footerBrand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

@@ -1,4 +1,20 @@
-export type ContentBlockType = 'link' | 'social_link' | 'text' | 'section_title' | 'embed' | 'carousel'
+// === Block Types ===
+
+export type ContentBlockType =
+  | 'link'
+  | 'social_link'
+  | 'text'
+  | 'section_title'
+  | 'embed'
+  | 'carousel'
+  | 'music_card'
+  | 'banner_link'
+
+// === Layout Categories ===
+
+export type LayoutCategory = 'komi' | 'hoobe' | 'linktree'
+
+// === Profile ===
 
 export interface Profile {
   id: string
@@ -12,7 +28,14 @@ export interface Profile {
   role: 'user' | 'admin'
   onboarding_complete: boolean
   created_at: string
+  // v2 fields
+  genres: string[]
+  locations: string[]
+  booking_email: string | null
+  booking_text: string | null
 }
+
+// === Social Links ===
 
 export interface SocialLink {
   id: string
@@ -24,15 +47,29 @@ export interface SocialLink {
   is_visible: boolean
 }
 
+// === Content Blocks ===
+
 export interface ContentBlock {
   id: string
   user_id: string
   type: ContentBlockType
   position: number
   is_visible: boolean
-  data: LinkBlockData | TextBlockData | SectionTitleData | EmbedBlockData | SocialLinkBlockData | CarouselBlockData
+  data: ContentBlockData
   created_at: string
 }
+
+export type ContentBlockData =
+  | LinkBlockData
+  | TextBlockData
+  | SectionTitleData
+  | EmbedBlockData
+  | SocialLinkBlockData
+  | CarouselBlockData
+  | MusicCardBlockData
+  | BannerLinkBlockData
+
+// === Block Data Types ===
 
 export interface LinkBlockData {
   title: string
@@ -63,21 +100,41 @@ export interface EmbedBlockData {
 
 export interface CarouselItem {
   title: string
+  subtitle?: string
   url: string
   thumbnail_url: string
+  action?: 'play' | 'link'
 }
 
 export interface CarouselBlockData {
   title: string
+  variant: 'video' | 'music'
   items: CarouselItem[]
 }
+
+export interface MusicCardBlockData {
+  title: string
+  artist: string
+  url: string
+  cover_url: string
+  platform: 'spotify' | 'soundcloud'
+}
+
+export interface BannerLinkBlockData {
+  title: string
+  url: string
+  image_url: string
+  subtitle?: string
+}
+
+// === Template ===
 
 export interface Template {
   id: string
   name: string
   description: string
+  layoutCategory: LayoutCategory
   colors: {
-    /** Solid fallback color (used for gradient endpoints, fade targets) */
     background: string
     surface: string
     text: string
@@ -85,9 +142,7 @@ export interface Template {
     accent: string
     border: string
   }
-  /** CSS background value — solid color, gradient, or multi-layer */
   backgroundCSS: string
-  /** Optional CSS for a pattern/texture overlay (e.g. starfield, marble) */
   backgroundOverlay?: string
   fonts: {
     display: string
@@ -96,16 +151,26 @@ export interface Template {
   grain: boolean
   category: 'dark' | 'light' | 'colorful'
   layout: {
-    /** How the profile photo is displayed */
     heroStyle: 'circle-avatar' | 'cover-photo'
-    /** Border-radius for link cards */
     cardRadius: string
-    /** How social links are displayed in the hero */
     socialStyle: 'pills' | 'icons-only'
-    /** Display name font size */
     nameSize: 'md' | 'lg' | 'xl'
   }
 }
+
+// === Tenants (Multi-Tenant, Phase 2) ===
+
+export interface Tenant {
+  id: string
+  slug: string
+  name: string
+  domain: string | null
+  logo_url: string | null
+  accent_color: string | null
+  created_at: string
+}
+
+// === Analytics ===
 
 export interface AnalyticsEvent {
   user_id: string

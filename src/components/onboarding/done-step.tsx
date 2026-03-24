@@ -39,6 +39,10 @@ export function DoneStep({
     role: 'user',
     onboarding_complete: false,
     created_at: new Date().toISOString(),
+    genres: [],
+    locations: [],
+    booking_email: null,
+    booking_text: null,
   }
 
   // Build social links from entered links
