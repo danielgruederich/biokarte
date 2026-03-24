@@ -63,11 +63,11 @@ export function EmbedBlock({ data }: Props) {
       <div className={styles.embedSoundcloud}>
         <iframe
           width="100%"
-          height="300"
+          height="200"
           src={getSoundCloudEmbedUrl(activeUrl)}
           title={data.title ?? 'SoundCloud'}
           allow="autoplay"
-          style={{ border: 'none', display: 'block', width: '100%', height: '300px' }}
+          style={{ border: 'none', display: 'block', width: '100%', height: '200px' }}
         />
       </div>
     )

@@ -143,9 +143,10 @@
 
 .socialIcons {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: center;
   margin-bottom: 0.25rem;
+  flex-wrap: wrap;
 }
 
 .socialIcon {
