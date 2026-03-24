@@ -56,7 +56,8 @@ export function CarouselBlock({ data, blockId, profileId }: Props) {
               key={i}
               style={{
                 flexShrink: 0,
-                width: '300px',
+                width: '280px',
+                height: '180px',
                 borderRadius: 'var(--card-radius, 0.875rem)',
                 overflow: 'hidden',
                 scrollSnapAlign: 'start',
@@ -64,11 +65,11 @@ export function CarouselBlock({ data, blockId, profileId }: Props) {
             >
               <iframe
                 width="100%"
-                height="300"
+                height="180"
                 src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(item.url)}&color=%23c8ff00&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true`}
                 title={item.title}
                 allow="autoplay"
-                style={{ border: 'none', display: 'block' }}
+                style={{ border: 'none', display: 'block', width: '100%', height: '180px' }}
               />
             </div>
           ))
