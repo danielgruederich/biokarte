@@ -109,7 +109,7 @@ export interface CarouselItem {
 
 export interface CarouselBlockData {
   title: string
-  variant: 'video' | 'music'
+  variant: 'video' | 'music' | 'soundcloud'
   items: CarouselItem[]
 }
 
