@@ -56,7 +56,8 @@ export function CarouselBlock({ data, blockId, profileId }: Props) {
               key={i}
               style={{
                 flexShrink: 0,
-                width: '280px',
+                width: 'calc(75% - 0.5rem)',
+                minWidth: '240px',
                 height: '180px',
                 borderRadius: 'var(--card-radius, 0.875rem)',
                 overflow: 'hidden',
