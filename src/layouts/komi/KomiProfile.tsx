@@ -60,7 +60,7 @@ export function KomiProfile({ profile, socialLinks, contentBlocks, template }: K
 
         <KomiHero profile={profile} socialLinks={socialLinks} />
         <KomiNav contentBlocks={contentBlocks} />
-        <KomiBlocks contentBlocks={contentBlocks} profileId={profile.id} />
+        <KomiBlocks contentBlocks={contentBlocks} profileId={profile.id} profile={profile} />
 
         {/* Footer */}
         <div className={styles.footer}>

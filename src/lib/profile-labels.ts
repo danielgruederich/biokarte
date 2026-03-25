@@ -1,0 +1,40 @@
+export const profileLabels = {
+  musician: {
+    typeName: 'Musiker / DJ',
+    typeDescription: 'DJs, Produzenten, Künstler',
+    typeIcon: '🎧',
+    genres: 'Genres',
+    genresPlaceholder: 'z.B. Techno, House, Drum & Bass',
+    locations: 'Standorte',
+    locationsPlaceholder: 'z.B. Köln, Berlin',
+    bookingEmail: 'Booking E-Mail',
+    bookingText: 'Booking Info',
+    bookingCta: 'Booking anfragen',
+  },
+  business: {
+    typeName: 'Geschäft / Gastro',
+    typeDescription: 'Cafés, Restaurants, Shops',
+    typeIcon: '🍽️',
+    genres: 'Kategorien',
+    genresPlaceholder: 'z.B. Pizza, Burger, Café',
+    locations: 'Standorte',
+    locationsPlaceholder: 'z.B. Ehrenfeld, Südstadt',
+    bookingEmail: 'Kontakt E-Mail',
+    bookingText: 'Kontakt Info',
+    bookingCta: 'Kontakt',
+  },
+  collective: {
+    typeName: 'Kollektiv / Label',
+    typeDescription: 'Labels, Kollektive, Clubs',
+    typeIcon: '👥',
+    genres: 'Genres',
+    genresPlaceholder: 'z.B. Techno, House, Drum & Bass',
+    locations: 'Standorte',
+    locationsPlaceholder: 'z.B. Köln, Berlin',
+    bookingEmail: 'Booking E-Mail',
+    bookingText: 'Booking Info',
+    bookingCta: 'Booking anfragen',
+  },
+} as const
+
+export type ProfileType = keyof typeof profileLabels

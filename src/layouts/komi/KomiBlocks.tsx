@@ -1,15 +1,16 @@
 'use client'
 
-import type { ContentBlock } from '@/lib/types'
+import type { ContentBlock, Profile } from '@/lib/types'
 import { renderBlock } from '@/blocks/registry'
 import styles from './komi.module.css'
 
 interface KomiBlocksProps {
   contentBlocks: ContentBlock[]
   profileId: string
+  profile?: Profile
 }
 
-export function KomiBlocks({ contentBlocks, profileId }: KomiBlocksProps) {
+export function KomiBlocks({ contentBlocks, profileId, profile }: KomiBlocksProps) {
   const visibleBlocks = contentBlocks
     .filter(b => b.is_visible)
     .sort((a, b) => a.position - b.position)
@@ -20,7 +21,7 @@ export function KomiBlocks({ contentBlocks, profileId }: KomiBlocksProps) {
     <div className={styles.blocks}>
       {visibleBlocks.map(block => (
         <div key={block.id}>
-          {renderBlock(block.type, block.data, block.id, profileId)}
+          {renderBlock(block.type, block.data, block.id, profileId, profile)}
         </div>
       ))}
     </div>

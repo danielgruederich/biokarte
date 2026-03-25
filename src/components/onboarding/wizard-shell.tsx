@@ -4,13 +4,15 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
+import { ProfileTypeStep } from './profile-type-step'
 import { TemplateStep } from './template-step'
 import { PlatformsStep } from './platforms-step'
 import { ProfileStep } from './profile-step'
 import { DoneStep } from './done-step'
 import { getPlatform, buildPlatformUrl } from '@/lib/platforms'
+import type { ProfileType } from '@/lib/profile-labels'
 
-const TOTAL_STEPS = 4 // steps 2-5 (registration is step 1 and already done)
+const TOTAL_STEPS = 5 // steps 2-6 (registration is step 1 and already done)
 
 interface WizardShellProps {
   userId: string
@@ -26,6 +28,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
   const [saveError, setSaveError] = useState<string | null>(null)
 
   // Wizard state
+  const [profileType, setProfileType] = useState<ProfileType>('musician')
   const [templateId, setTemplateId] = useState('dark-komi')
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([])
   const [links, setLinks] = useState<Record<string, string>>({})
@@ -63,6 +66,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
     const { error: profileError } = await supabase
       .from('profiles')
       .update({
+        profile_type: profileType,
         template_id: templateId,
         display_name: displayName || username,
         bio: bio || null,
@@ -106,7 +110,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
     router.push('/dashboard')
   }
 
-  const stepLabels = ['Template', 'Plattformen', 'Profil', 'Fertig']
+  const stepLabels = ['Profiltyp', 'Template', 'Plattformen', 'Profil', 'Fertig']
   const isLastStep = step === TOTAL_STEPS - 1
 
   return (
@@ -130,9 +134,12 @@ export function WizardShell({ userId, username }: WizardShellProps) {
       {/* Step content */}
       <div className="flex-1 px-5 pb-6 overflow-y-auto">
         {step === 0 && (
-          <TemplateStep selectedId={templateId} onSelect={setTemplateId} />
+          <ProfileTypeStep selectedType={profileType} onSelect={setProfileType} />
         )}
         {step === 1 && (
+          <TemplateStep selectedId={templateId} onSelect={setTemplateId} />
+        )}
+        {step === 2 && (
           <PlatformsStep
             selectedPlatforms={selectedPlatforms}
             links={links}
@@ -140,7 +147,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
             onLinkChange={handleLinkChange}
           />
         )}
-        {step === 2 && (
+        {step === 3 && (
           <ProfileStep
             userId={userId}
             displayName={displayName}
@@ -151,7 +158,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
             onAvatarUrlChange={setAvatarUrl}
           />
         )}
-        {step === 3 && (
+        {step === 4 && (
           <DoneStep
             userId={userId}
             username={username}
@@ -159,6 +166,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
             bio={bio}
             avatarUrl={avatarUrl}
             templateId={templateId}
+            profileType={profileType}
             links={links}
           />
         )}

@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import type { Profile } from '@/lib/types'
 import { StatsCards } from '@/components/dashboard/stats-cards'
 import { TopLinks } from '@/components/dashboard/top-links'
+import { AnalyticsSection } from '@/components/dashboard/analytics-section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 
@@ -32,8 +33,11 @@ export default async function DashboardPage() {
         Willkommen zurück, {profile.display_name}
       </h1>
 
-      {/* Stats */}
+      {/* Stats (all time) */}
       <StatsCards userId={user.id} />
+
+      {/* Analytics with time ranges */}
+      <AnalyticsSection userId={user.id} />
 
       {/* Main content */}
       <div className="flex flex-col lg:flex-row gap-6">

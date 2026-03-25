@@ -3,7 +3,7 @@
 import { ProfileRenderer } from '@/components/profile/profile-renderer'
 import { getTemplate } from '@/lib/templates'
 import { getPlatform, buildPlatformUrl } from '@/lib/platforms'
-import type { Profile, SocialLink } from '@/lib/types'
+import type { Profile, SocialLink, ProfileType } from '@/lib/types'
 
 interface DoneStepProps {
   userId: string
@@ -12,6 +12,7 @@ interface DoneStepProps {
   bio: string
   avatarUrl: string | null
   templateId: string
+  profileType: ProfileType
   links: Record<string, string>
 }
 
@@ -22,6 +23,7 @@ export function DoneStep({
   bio,
   avatarUrl,
   templateId,
+  profileType,
   links,
 }: DoneStepProps) {
   const template = getTemplate(templateId)
@@ -37,6 +39,7 @@ export function DoneStep({
     template_id: templateId,
     status: 'online',
     role: 'user',
+    profile_type: profileType,
     onboarding_complete: false,
     created_at: new Date().toISOString(),
     genres: [],

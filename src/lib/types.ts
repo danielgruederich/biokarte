@@ -1,3 +1,7 @@
+// === Profile Types ===
+
+export type ProfileType = 'musician' | 'business' | 'collective'
+
 // === Block Types ===
 
 export type ContentBlockType =
@@ -9,6 +13,9 @@ export type ContentBlockType =
   | 'carousel'
   | 'music_card'
   | 'banner_link'
+  | 'profile_tags'
+  | 'booking_cta'
+  | 'document_links'
 
 // === Layout Categories ===
 
@@ -26,6 +33,7 @@ export interface Profile {
   template_id: string
   status: 'online' | 'offline'
   role: 'user' | 'admin'
+  profile_type: ProfileType
   onboarding_complete: boolean
   created_at: string
   // v2 fields
@@ -68,6 +76,9 @@ export type ContentBlockData =
   | CarouselBlockData
   | MusicCardBlockData
   | BannerLinkBlockData
+  | ProfileTagsBlockData
+  | BookingCtaBlockData
+  | DocumentLinksBlockData
 
 // === Block Data Types ===
 
@@ -128,6 +139,24 @@ export interface BannerLinkBlockData {
   subtitle?: string
 }
 
+export interface ProfileTagsBlockData {
+  showGenres: boolean
+  showLocations: boolean
+}
+
+export interface BookingCtaBlockData {
+  style: 'button' | 'card'
+}
+
+export interface DocumentLinksBlockData {
+  title: string
+  items: {
+    label: string
+    url: string
+    thumbnail_url?: string
+  }[]
+}
+
 // === Template ===
 
 export interface Template {
@@ -174,7 +203,7 @@ export interface Tenant {
 // === Analytics ===
 
 export interface AnalyticsEvent {
-  user_id: string
+  profile_id: string
   event_type: 'view' | 'click'
   target_id?: string
   target_type?: string

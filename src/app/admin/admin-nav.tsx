@@ -13,6 +13,7 @@ const navLinks = [
   { href: '/admin', label: 'Übersicht' },
   { href: '/admin/users', label: 'User' },
   { href: '/admin/profiles', label: 'Profile' },
+  { href: '/admin/banners', label: 'Banner' },
   { href: '/admin/settings', label: 'Einstellungen' },
 ]
 

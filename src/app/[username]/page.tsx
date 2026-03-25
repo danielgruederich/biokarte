@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { getTemplate } from '@/lib/templates'
 import { KomiProfile } from '@/layouts/komi/KomiProfile'
+import { AdminBanner } from '@/components/banner/admin-banner'
 import type { Profile, SocialLink, ContentBlock } from '@/lib/types'
 
 interface PageProps {
@@ -58,8 +59,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
   const typedProfile = profile as unknown as Profile
 
-  // Fetch social links and content blocks in parallel
-  const [{ data: socialLinksRaw }, { data: contentBlocksRaw }] = await Promise.all([
+  // Fetch social links, content blocks, and active banner in parallel
+  const [{ data: socialLinksRaw }, { data: contentBlocksRaw }, { data: bannerRaw }] = await Promise.all([
     supabase
       .from('social_links')
       .select('*')
@@ -72,10 +73,17 @@ export default async function PublicProfilePage({ params }: PageProps) {
       .eq('user_id', typedProfile.id)
       .eq('is_visible', true)
       .order('position', { ascending: true }),
+    supabase
+      .from('admin_banners')
+      .select('*')
+      .eq('is_active', true)
+      .limit(1)
+      .single(),
   ])
 
   const socialLinks = (socialLinksRaw ?? []) as unknown as SocialLink[]
   const contentBlocks = (contentBlocksRaw ?? []) as unknown as ContentBlock[]
+  const activeBanner = bannerRaw as { id: string; title: string; description: string | null; image_url: string | null; link_url: string | null; position: 'top' | 'bottom' } | null
 
   const template = getTemplate(typedProfile.template_id)
 
@@ -91,12 +99,22 @@ export default async function PublicProfilePage({ params }: PageProps) {
               padding: 0;
             }
           `}</style>
+          {activeBanner && activeBanner.position === 'top' && (
+            <div className="mx-auto max-w-[430px] px-4 pt-3">
+              <AdminBanner banner={activeBanner} profileId={typedProfile.id} />
+            </div>
+          )}
           <KomiProfile
             profile={typedProfile}
             socialLinks={socialLinks}
             contentBlocks={contentBlocks}
             template={template}
           />
+          {activeBanner && activeBanner.position === 'bottom' && (
+            <div className="mx-auto max-w-[430px] px-4 pb-6">
+              <AdminBanner banner={activeBanner} profileId={typedProfile.id} />
+            </div>
+          )}
         </>
       )
 
@@ -115,12 +133,22 @@ export default async function PublicProfilePage({ params }: PageProps) {
               padding: 0;
             }
           `}</style>
+          {activeBanner && activeBanner.position === 'top' && (
+            <div className="mx-auto max-w-[430px] px-4 pt-3">
+              <AdminBanner banner={activeBanner} profileId={typedProfile.id} />
+            </div>
+          )}
           <KomiProfile
             profile={typedProfile}
             socialLinks={socialLinks}
             contentBlocks={contentBlocks}
             template={template}
           />
+          {activeBanner && activeBanner.position === 'bottom' && (
+            <div className="mx-auto max-w-[430px] px-4 pb-6">
+              <AdminBanner banner={activeBanner} profileId={typedProfile.id} />
+            </div>
+          )}
         </>
       )
 
