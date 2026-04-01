@@ -1,0 +1,229 @@
+/* Linktree Layout — Fullscreen Background Image + Pills/Buttons */
+
+.page {
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fullscreen background image */
+.bgImage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgImageInner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark overlay on background */
+.bgOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content column */
+.column {
+  position: relative;
+  z-index: 2;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.avatarImg {
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Name */
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin: 0.75rem 0 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Bio */
+.bio {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin: 0.25rem 0 0;
+  max-width: 300px;
+  line-height: 1.4;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Blocks container */
+.blocks {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+/* Section title */
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin: 0.75rem 0 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Link button — default: white pills */
+.linkButton {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s, opacity 0.15s;
+  cursor: pointer;
+  border: none;
+}
+
+.linkButton:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+/* Pill style (border-radius: 999px) */
+.linkPill {
+  border-radius: 999px;
+}
+
+/* Box style (border-radius: 12px) */
+.linkBox {
+  border-radius: 12px;
+}
+
+/* White button variant */
+.linkWhite {
+  background: white;
+  color: #1a1a1a;
+}
+
+/* Accent color button variant */
+.linkAccent {
+  background: var(--accent, #e8946a);
+  color: white;
+}
+
+/* Text block */
+.textBlock {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Embed blocks */
+.embedWrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.embedYoutube {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.embedYoutubeIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embedSoundcloud {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Social icons row */
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.socialIcon:hover {
+  opacity: 0.6;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.footerBrand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

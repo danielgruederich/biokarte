@@ -22,7 +22,7 @@ interface WizardShellProps {
 export function WizardShell({ userId, username }: WizardShellProps) {
   const router = useRouter()
 
-  // Step index: 0 = template, 1 = platforms, 2 = profile, 3 = done
+  // Step index: 0 = profileType, 1 = template, 2 = platforms, 3 = profile, 4 = done
   const [step, setStep] = useState(0)
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)

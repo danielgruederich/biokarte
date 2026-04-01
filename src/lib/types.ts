@@ -53,6 +53,8 @@ export interface SocialLink {
   url: string
   position: number
   is_visible: boolean
+  icon_size: 'small' | 'medium' | 'large'
+  icon_color: string
 }
 
 // === Content Blocks ===

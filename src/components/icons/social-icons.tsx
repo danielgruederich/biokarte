@@ -138,6 +138,57 @@ export function PatreonIcon({ size = 20, className }: IconProps) {
   )
 }
 
+// --- Missing platform icons ---
+
+export function BeatportIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M21.429 13.259a4.394 4.394 0 0 1-1.272 3.125 4.394 4.394 0 0 1-3.126 1.272H12.57V24H10.29V4.457a4.398 4.398 0 0 1 1.279-3.118A4.394 4.394 0 0 1 14.687.06h2.344a4.39 4.39 0 0 1 3.126 1.28 4.394 4.394 0 0 1 1.272 3.117zM12.571 2.343v13.03h4.46a2.107 2.107 0 0 0 2.115-2.114V4.457a2.107 2.107 0 0 0-2.114-2.114z" />
+    </svg>
+  )
+}
+
+export function BandcampIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M0 18.75l7.437-13.5H24l-7.438 13.5z" />
+    </svg>
+  )
+}
+
+export function GoogleBusinessIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
+    </svg>
+  )
+}
+
+export function LieferandoIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+      <circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L21 6H6" />
+    </svg>
+  )
+}
+
+export function TripAdvisorIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+    </svg>
+  )
+}
+
+export function YelpIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+    </svg>
+  )
+}
+
 // Map platform IDs to icon components
 export const socialIconMap: Record<string, (props: IconProps) => React.ReactElement> = {
   instagram: InstagramIcon,
@@ -155,6 +206,19 @@ export const socialIconMap: Record<string, (props: IconProps) => React.ReactElem
   whatsapp: WhatsAppIcon,
   mixcloud: MixcloudIcon,
   patreon: PatreonIcon,
+  beatport: BeatportIcon,
+  bandcamp: BandcampIcon,
+  google_business: GoogleBusinessIcon,
+  lieferando: LieferandoIcon,
+  tripadvisor: TripAdvisorIcon,
+  yelp: YelpIcon,
+}
+
+// Icon size map
+export const iconSizes: Record<string, number> = {
+  small: 20,
+  medium: 28,
+  large: 40,
 }
 
 // --- Utility icons (not in socialIconMap) ---

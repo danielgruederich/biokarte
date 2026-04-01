@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { getTemplate } from '@/lib/templates'
 import { KomiProfile } from '@/layouts/komi/KomiProfile'
+import { LinktreeProfile } from '@/layouts/linktree/LinktreeProfile'
 import { AdminBanner } from '@/components/banner/admin-banner'
 import type { Profile, SocialLink, ContentBlock } from '@/lib/types'
 
@@ -123,12 +124,11 @@ export default async function PublicProfilePage({ params }: PageProps) {
       return <div>hoo.be Layout — coming soon</div>
 
     case 'linktree':
-      // Phase 3: LinktreeProfile — for now fallback to KOMI
       return (
         <>
           <style>{`
             html, body {
-              background-color: ${template.colors.background} !important;
+              background-color: #000 !important;
               margin: 0;
               padding: 0;
             }
@@ -138,7 +138,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
               <AdminBanner banner={activeBanner} profileId={typedProfile.id} />
             </div>
           )}
-          <KomiProfile
+          <LinktreeProfile
             profile={typedProfile}
             socialLinks={socialLinks}
             contentBlocks={contentBlocks}
