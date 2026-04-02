@@ -62,6 +62,8 @@ export function DoneStep({
         url,
         position: index,
         is_visible: true,
+        icon_size: 'medium' as const,
+        icon_color: 'white',
       }
     })
 
