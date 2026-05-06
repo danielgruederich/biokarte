@@ -505,6 +505,12 @@ Alle Referenz-Materialien liegen in `~/Desktop/Biopages-Templates/`:
 | `Referenz-KOMI-Usher.pdf` | KOMI Profilseite (Usher) — Content-Struktur |
 | `Referenz-hoobe-Template-Picker.jpg` | hoo.be Template Picker — Onboarding Grid |
 
+### Externe Referenz-Seiten (Live-Links)
+
+| URL | Was | Warum interessant |
+|-----|-----|-------------------|
+| https://go.laylo.com/music | Laylo Music-Bio (Artist-Drops, RSVPs, Releases) | Inspiration für Music-Template: Drop-/Release-Mechanik, Artist-Branding, Newsletter-/RSVP-Flow als Content-Block |
+
 ### Zusätzliche Screenshots (im Brainstorming gesammelt)
 
 - KOMI Dashboard: Navigation, Editor, Content Blocks, Analytics, Settings, Brand Deals
@@ -580,6 +586,7 @@ Aus dem Design-Ordner (`~/Desktop/BioKarte-Templates/`):
 | Dark Elegant (4 Varianten) | Schwarze Bögen/Kreise, Sparkle-Elemente, Script-Font | Gute Basis für ein "Elegant" Template |
 | Kio Suffocate | Bento-Grid, Glassmorphism, Stats | Zeigt: Templates können auch Grid-Layouts sein, nicht nur Listen |
 | Surf Coach | Full-bleed Hero, Booking mit Pricing, Kurs-Karten | Zeigt: Templates für Coaches/Trainer mit Buchungsfunktion |
+| Laylo Music (https://go.laylo.com/music) | Artist-fokussierte Bio mit Drops/Releases/RSVPs | Inspiration für ein Music-Template mit Release-Cards, Tour-Dates und Newsletter-/RSVP-Block |
 
 ### Template-Kategorien (erweitert)
 
