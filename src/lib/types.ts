@@ -16,6 +16,7 @@ export type ContentBlockType =
   | 'profile_tags'
   | 'booking_cta'
   | 'document_links'
+  | 'contact_form'
 
 // === Layout Categories ===
 
@@ -81,6 +82,7 @@ export type ContentBlockData =
   | ProfileTagsBlockData
   | BookingCtaBlockData
   | DocumentLinksBlockData
+  | ContactFormBlockData
 
 // === Block Data Types ===
 
@@ -157,6 +159,17 @@ export interface DocumentLinksBlockData {
     url: string
     thumbnail_url?: string
   }[]
+}
+
+export interface ContactFormBlockData {
+  // recipient_email is resolved server-side in /api/contact — never trusted from the client
+  recipient_email: string
+  title?: string
+  description?: string
+  submit_label?: string
+  success_message?: string
+  whatsapp_number?: string
+  whatsapp_label?: string
 }
 
 // === Template ===

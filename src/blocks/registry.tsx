@@ -10,6 +10,7 @@ import { BannerLinkBlock } from './BannerLinkBlock'
 import { ProfileTagsBlock } from './ProfileTagsBlock'
 import { BookingCtaBlock } from './BookingCtaBlock'
 import { DocumentLinksBlock } from './DocumentLinksBlock'
+import { ContactFormBlock } from './ContactFormBlock'
 
 // Block registry — add new block = 1 file + 1 line here
 type BlockProps = { data: unknown; blockId: string; profileId: string; profile?: Profile }
@@ -26,6 +27,7 @@ export const blockRegistry: Record<ContentBlockType, React.ComponentType<BlockPr
   profile_tags: ProfileTagsBlock as React.ComponentType<BlockProps>,
   booking_cta: BookingCtaBlock as React.ComponentType<BlockProps>,
   document_links: DocumentLinksBlock as React.ComponentType<BlockProps>,
+  contact_form: ContactFormBlock as React.ComponentType<BlockProps>,
 }
 
 export function renderBlock(type: ContentBlockType, data: unknown, blockId: string, profileId: string, profile?: Profile) {
