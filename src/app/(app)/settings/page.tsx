@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { getTemplate, templates } from '@/lib/templates'
@@ -18,6 +18,8 @@ export default function SettingsPage() {
 
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
+  const [uploadingAvatar, setUploadingAvatar] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Inline edit state for username
   const [editingUsername, setEditingUsername] = useState(false)
@@ -143,6 +145,43 @@ export default function SettingsPage() {
     toast.success(newStatus === 'online' ? 'Profil ist jetzt online.' : 'Profil ist jetzt offline.')
   }
 
+  async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file || !profile) return
+
+    setUploadingAvatar(true)
+    const ext = file.name.split('.').pop()
+    const path = `avatars/${profile.id}.${ext}`
+
+    const { error } = await supabase.storage
+      .from('avatars')
+      .upload(path, file, { upsert: true })
+
+    if (error) {
+      toast.error('Foto-Upload fehlgeschlagen.')
+      setUploadingAvatar(false)
+      return
+    }
+
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+    const newUrl = data.publicUrl
+
+    const { error: updateError } = await supabase
+      .from('profiles')
+      .update({ avatar_url: newUrl })
+      .eq('id', profile.id)
+
+    setUploadingAvatar(false)
+
+    if (updateError) {
+      toast.error('Fehler beim Speichern des Fotos.')
+      return
+    }
+
+    setProfile({ ...profile, avatar_url: newUrl })
+    toast.success('Profilfoto aktualisiert.')
+  }
+
   async function handleSignOut() {
     await supabase.auth.signOut()
     router.push('/login')
@@ -173,6 +212,41 @@ export default function SettingsPage() {
             <CardTitle className="text-base text-zinc-100">Profil-Details</CardTitle>
           </CardHeader>
           <CardContent className="space-y-5">
+            {/* Avatar */}
+            <div className="flex flex-col items-center gap-3">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="relative w-24 h-24 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden hover:border-teal-500 transition-colors"
+              >
+                {profile.avatar_url ? (
+                  <img src={profile.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full gap-1">
+                    <svg className="w-7 h-7 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span className="text-zinc-500 text-xs">Foto</span>
+                  </div>
+                )}
+                {uploadingAvatar && (
+                  <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-teal-400 border-t-transparent rounded-full animate-spin" />
+                  </div>
+                )}
+              </button>
+              <span className="text-xs text-zinc-500">Tippe, um das Foto zu ändern</span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleAvatarChange}
+              />
+            </div>
+
+            <Separator className="bg-zinc-800" />
+
             {/* Username */}
             <div className="space-y-1">
               <Label className="text-zinc-400 text-xs uppercase tracking-wide">Benutzername</Label>
