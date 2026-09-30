@@ -114,7 +114,7 @@ export function WizardShell({ userId, username }: WizardShellProps) {
   const isLastStep = step === TOTAL_STEPS - 1
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col">
+    <div className="cb-theme min-h-screen bg-zinc-950 flex flex-col">
       {/* Progress bar */}
       <div className="w-full h-1 bg-zinc-800">
         <div

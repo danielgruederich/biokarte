@@ -153,6 +153,21 @@
   --border: rgba(255, 255, 255, 0.13);
   --input: rgba(255, 255, 255, 0.13);
   --ring: #F25C24;
+  /* App screens use Tailwind zinc/white directly (~250 places). Inside the theme
+     the zinc scale and white follow the brand neutrals instead. Profile
+     templates use no zinc classes, so they stay untouched. */
+  --color-zinc-950: #07060a;
+  --color-zinc-900: #161320;
+  --color-zinc-800: #2a2633;
+  --color-zinc-700: #3a3545;
+  --color-zinc-600: #5a5468;
+  --color-zinc-500: #7d768c;
+  --color-zinc-400: #a09ab0;
+  --color-zinc-300: #c9c3d2;
+  --color-zinc-200: #e2dce4;
+  --color-zinc-100: #F2EDE6;
+  --color-white: #F2EDE6;
+  background-color: var(--background);
 }
 
 @layer base {

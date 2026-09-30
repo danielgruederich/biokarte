@@ -25,7 +25,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex flex-col">
+    <div className="cb-theme min-h-screen bg-zinc-950 text-white flex flex-col">
       <AppNav displayName={profile.display_name} />
       <main className="flex-1">{children}</main>
     </div>
