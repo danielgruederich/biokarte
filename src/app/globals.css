@@ -131,6 +131,30 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Colognebeats theme for app UI (auth, later dashboard): maps shadcn tokens
+   to the brand tokens above. Profile templates keep their own themes. */
+.cb-theme {
+  color-scheme: dark;
+  --background: #07060a;
+  --foreground: #F2EDE6;
+  --card: #161320;
+  --card-foreground: #F2EDE6;
+  --popover: #161320;
+  --popover-foreground: #F2EDE6;
+  --primary: #F25C24;
+  --primary-foreground: #07060a;
+  --secondary: #2a2633;
+  --secondary-foreground: #F2EDE6;
+  --muted: #0f0d13;
+  --muted-foreground: #a09ab0;
+  --accent: #2a2633;
+  --accent-foreground: #F2EDE6;
+  --destructive: #ef6b6b;
+  --border: rgba(255, 255, 255, 0.13);
+  --input: rgba(255, 255, 255, 0.13);
+  --ring: #F25C24;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

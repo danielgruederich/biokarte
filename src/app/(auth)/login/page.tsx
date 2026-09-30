@@ -48,15 +48,15 @@ export default function LoginPage() {
   }
 
   return (
-    <Card className="w-full max-w-sm bg-zinc-900 border-zinc-800 text-white">
+    <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-lg">Anmelden</CardTitle>
+        <CardTitle className="font-display text-lg font-bold">Anmelden</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">
         <form onSubmit={handleEmailLogin} className="space-y-4">
           <div className="space-y-1">
-            <Label htmlFor="email" className="text-zinc-300">E-Mail</Label>
+            <Label htmlFor="email">E-Mail</Label>
             <Input
               id="email"
               type="email"
@@ -64,12 +64,12 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+              className="h-11 bg-muted"
             />
           </div>
 
           <div className="space-y-1">
-            <Label htmlFor="password" className="text-zinc-300">Passwort</Label>
+            <Label htmlFor="password">Passwort</Label>
             <Input
               id="password"
               type="password"
@@ -77,32 +77,32 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
+              className="h-11 bg-muted"
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-400">{error}</p>
+            <p className="text-sm text-destructive">{error}</p>
           )}
 
-          <Button type="submit" disabled={loading} className="w-full">
+          <Button type="submit" disabled={loading} className="h-11 w-full rounded-full font-semibold hover:bg-cb-amber-l">
             {loading ? 'Wird angemeldet…' : 'Anmelden'}
           </Button>
         </form>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-zinc-700" />
+            <span className="w-full border-t border-border" />
           </div>
-          <div className="relative flex justify-center text-xs text-zinc-500">
-            <span className="bg-zinc-900 px-2">oder</span>
+          <div className="relative flex justify-center text-xs text-muted-foreground">
+            <span className="bg-card px-2">oder</span>
           </div>
         </div>
 
         <Button
           type="button"
           variant="outline"
-          className="w-full border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700"
+          className="h-11 w-full rounded-full font-semibold hover:border-foreground"
           onClick={handleGoogleLogin}
         >
           Mit Google anmelden
@@ -110,9 +110,9 @@ export default function LoginPage() {
       </CardContent>
 
       <CardFooter className="justify-center">
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Noch kein Konto?{' '}
-          <Link href="/register" className="text-white underline underline-offset-4 hover:text-zinc-200">
+          <Link href="/register" className="font-semibold text-cb-amber-l underline-offset-4 hover:underline">
             Registrieren
           </Link>
         </p>
